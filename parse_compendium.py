@@ -122,12 +122,6 @@ from collections import Counter
 print('by group:', Counter(p['group'] for p in dedup))
 print('codes:', Counter(p['code'] for p in dedup))
 json.dump(dedup, open('products.json','w',encoding='utf-8'), indent=1, ensure_ascii=False)
-# emit data.js so the app works offline from file:// (no fetch/CORS needed)
-with open('data.js','w',encoding='utf-8') as f:
-    f.write('// Auto-generated from the ND Weed Control Guide (W-253, 2026) pp.120-128.\n')
-    f.write('// Do not edit by hand; regenerate with parse_compendium.py\n')
-    f.write('window.PRODUCTS = ')
-    json.dump(dedup, f, ensure_ascii=False)
-    f.write(';\n')
-print('wrote products.json and data.js')
+# data.js is written by build_data.py (which merges in the Helena guide).
+print('wrote products.json — now run: py build_data.py')
 print('dicamba products:', sum(1 for p in dedup if 'dicamba' in (p.get('ai') or '').lower()))

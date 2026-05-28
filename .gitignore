@@ -4,8 +4,10 @@
 # Source PDF (copyrighted NDSU W-253 — not redistributed; data is derived into data.js)
 *.pdf
 
-# Intermediate extraction text (regenerable from the PDF via parse_compendium.py)
+# Intermediate extraction text (regenerable from the PDFs)
 compendium_raw.txt
+helena_moa_raw.txt
+helena_adj_raw.txt
 
 # OS / editor cruft
 Thumbs.db

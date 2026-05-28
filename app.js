@@ -12,7 +12,7 @@ const GROUP_NAMES = {
 const GROUP_CODES = {
   1: 'SG, SP, dry fertilizer',
   2: 'DF, WDG, WP',
-  3: 'SC, SE, ME, F, L, CS, ZC',
+  3: 'SC, SE, ME, F, L, CS, ZC, DC',
   4: 'EC, EW, OD',
   5: 'S, SL',
 };
@@ -158,7 +158,7 @@ function renderOrder() {
 
   // warnings
   const warns = [];
-  const hasAMS = selected.some((s) => s.code === 'AMS' || s.code === 'AMS-L');
+  const hasAMS = selected.some((s) => s.code === 'AMS' || s.code === 'AMS-L' || s.ammonium);
   const dicambaProds = selected.filter((s) => isDicamba(s.ai)).map((s) => s.name);
   if (hasAMS && dicambaProds.length) {
     warns.push(`<strong>Do not use AMS with dicamba.</strong> Ammonium increases dicamba
