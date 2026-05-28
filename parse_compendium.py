@@ -9,6 +9,9 @@ COMPANIES = [
 ]
 COMPANY_RE = re.compile(r'\b(' + '|'.join(sorted(COMPANIES, key=len, reverse=True)) + r')\b')
 
+# Companies whose products should be left out of the tool.
+EXCLUDE_COMPANIES = {'Tenkoz'}
+
 # Formulation code -> (group number, group label)
 # Groups follow A.P.P.L.E.S. (NDSU ND Weed Guide p.86)
 CODE_GROUP = {
@@ -89,6 +92,8 @@ for line in RAW.splitlines():
         continue
     cmatch = COMPANY_RE.search(s)
     if not cmatch:
+        continue
+    if cmatch.group(1) in EXCLUDE_COMPANIES:
         continue
     name = s[:cmatch.start()].strip()
     name = strip_soa(name)

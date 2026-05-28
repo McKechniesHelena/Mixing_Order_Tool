@@ -1,19 +1,5 @@
 [
  {
-  "name": "Brawl",
-  "code": "EC",
-  "group": 4,
-  "groupLabel": "Emulsifiable concentrates (EC, EW, OD)",
-  "ai": "Dual Mag S-metolachlor"
- },
- {
-  "name": "Brawl II",
-  "code": "EC",
-  "group": 4,
-  "groupLabel": "Emulsifiable concentrates (EC, EW, OD)",
-  "ai": "Dual II M S-metolachlor & benoxacor safen"
- },
- {
   "name": "BroadAxe XC",
   "code": "EC",
   "group": 4,
@@ -61,13 +47,6 @@
   "group": 4,
   "groupLabel": "Emulsifiable concentrates (EC, EW, OD)",
   "ai": "Bron. Adv. bromoxynil-ester & MCPA-ester"
- },
- {
-  "name": "Buccaneer/Plus",
-  "code": "SL",
-  "group": 5,
-  "groupLabel": "Solutions (S, SL)",
-  "ai": "Roundup glyphosate-ipa salt"
  },
  {
   "name": "Buckle",
@@ -376,13 +355,6 @@
   "group": 5,
   "groupLabel": "Solutions (S, SL)",
   "ai": "Na chlorat Sodium chlorate"
- },
- {
-  "name": "Detonate",
-  "code": "SL",
-  "group": 5,
-  "groupLabel": "Solutions (S, SL)",
-  "ai": "Banvel dicamba-dma salt"
  },
  {
   "name": "Diablo",
@@ -1463,13 +1435,6 @@
   "ai": "Distinct dicamba-Na & diflufenzopyr-Na"
  },
  {
-  "name": "Palace II",
-  "code": "SC",
-  "group": 3,
-  "groupLabel": "Liquid flowables / suspensions (SC, SE, ME, F, L, CS, ZC)",
-  "ai": "S-metolachlor & mesotrione"
- },
- {
   "name": "Panoflex",
   "code": "SG",
   "group": 1,
@@ -1517,13 +1482,6 @@
   "group": 5,
   "groupLabel": "Solutions (S, SL)",
   "ai": "Gramoxon paraquat-dichloride"
- },
- {
-  "name": "Parity",
-  "code": "EC",
-  "group": 4,
-  "groupLabel": "Emulsifiable concentrates (EC, EW, OD)",
-  "ai": "Puma fenoxaprop-P ethyl"
  },
  {
   "name": "Pathfinder II",
@@ -1867,13 +1825,6 @@
   "group": 2,
   "groupLabel": "Dry powders (DF, WDG, WP)",
   "ai": "propoxy-Na & meso & mefenpyr"
- },
- {
-  "name": "Ringside",
-  "code": "EC",
-  "group": 4,
-  "groupLabel": "Emulsifiable concentrates (EC, EW, OD)",
-  "ai": "Reflex fomesafen-Na salt"
  },
  {
   "name": "Ro-Neet SB",
@@ -2730,13 +2681,6 @@
   "ai": "Starane fluroxypyr-ester"
  },
  {
-  "name": "Volley NXT",
-  "code": "EC",
-  "group": 4,
-  "groupLabel": "Emulsifiable concentrates (EC, EW, OD)",
-  "ai": "Surpass acetochlor & dichlormid safener"
- },
- {
   "name": "Volta",
   "code": "DF",
   "group": 2,
@@ -2749,13 +2693,6 @@
   "group": 2,
   "groupLabel": "Dry powders (DF, WDG, WP)",
   "ai": "Harm. Extr thifensulfuron & tribenuron"
- },
- {
-  "name": "Volunteer",
-  "code": "EC",
-  "group": 4,
-  "groupLabel": "Emulsifiable concentrates (EC, EW, OD)",
-  "ai": "Select clethodim"
  },
  {
   "name": "Voucher",
