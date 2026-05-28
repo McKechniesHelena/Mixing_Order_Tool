@@ -64,6 +64,29 @@ main {
 .panel-head h2 { margin: 0; }
 .copy-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
+.scheme-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  background: var(--green-lt);
+  border: 1px solid #bcd4c2;
+  border-radius: 10px;
+}
+.scheme-label { font-size: .85rem; font-weight: 700; color: var(--green-dk); }
+.scheme-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.scheme-opt small { font-weight: 400; color: var(--muted); }
+.scheme-opt input { accent-color: var(--green); width: 17px; height: 17px; }
+
 .copy-btn {
   border: 1.5px solid var(--green);
   color: var(--green);

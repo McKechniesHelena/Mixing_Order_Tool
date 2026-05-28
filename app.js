@@ -1,7 +1,6 @@
 'use strict';
 
 /* ---- A.P.P.L.E.S. mixing groups (ND Weed Control Guide W-253, p.86) ---- */
-const GROUP_ORDER = [1, 2, 3, 4, 5];
 const GROUP_NAMES = {
   1: 'Soluble powders',
   2: 'Dry powders',
@@ -44,6 +43,53 @@ const CODE_GROUP = {
 };
 
 const isDicamba = (ai) => /dicamba|\bdic[-.]/i.test(ai || '');
+
+/* ---- Mixing-order schemes ----
+   A scheme maps each item to a numbered phase and supplies the phase labels.
+   `phaseOf` returns null for items that aren't tank-mixed (granular / unknown). */
+const INDUSTRY_LABELS = {
+  0: { name: 'Water conditioners / AMS', codes: 'add to the water first' },
+  2: { name: 'Dry products', codes: 'SG, SP, DF, WDG, WP' },
+  3: { name: 'Suspensions / flowables', codes: 'SC, SE, ME, F, L, CS, ZC, DC' },
+  4: { name: 'Soluble liquids / solutions', codes: 'S, SL' },
+  5: { name: 'Emulsifiable concentrates', codes: 'EC, EW, OD' },
+  6: { name: 'Oils', codes: 'COC, MSO' },
+  7: { name: 'Surfactants', codes: 'NIS' },
+  8: { name: 'Drift / defoaming agents', codes: 'add last' },
+};
+
+const SCHEMES = {
+  apples: {
+    title: 'A.P.P.L.E.S. method (ND Weed Control Guide W-253, p.86)',
+    phaseOf: (item) => (item.group >= 1 && item.group <= 5 ? item.group : null),
+    secondary: (item) => (item.adjuvant ? 1 : 0),   // pesticide before adjuvant
+    label: (ph) => ({ name: GROUP_NAMES[ph], codes: GROUP_CODES[ph] }),
+  },
+  industry: {
+    title: 'Solutions-before-EC order (label / industry sequence)',
+    phaseOf: (item) => {
+      if (item.adjuvant) {
+        if (item.group === 1) return 0;                 // AMS / water conditioners first
+        if (item.group === 4) return 6;                 // oils (COC/MSO)
+        if (item.group === 5) {
+          return (/DRA|AF/i.test(item.code || '') || /\blast\b/i.test(item.note || '')) ? 8 : 7;
+        }
+        return null;
+      }
+      switch (item.group) {
+        case 1: case 2: return 2;   // dry products
+        case 3: return 3;           // suspensions / flowables
+        case 5: return 4;           // soluble liquids / solutions
+        case 4: return 5;           // emulsifiable concentrates
+        default: return null;       // granular / unknown
+      }
+    },
+    secondary: () => 0,
+    label: (ph) => INDUSTRY_LABELS[ph],
+  },
+};
+
+let currentScheme = SCHEMES[localStorage.getItem('mixScheme')] ? localStorage.getItem('mixScheme') : 'apples';
 
 /* ---- State ---- */
 const selected = [];   // array of item objects
@@ -170,17 +216,20 @@ function render() {
 function orderToText() {
   const ordered = orderedItems();
   if (!ordered.length) return '';
+  const sc = SCHEMES[currentScheme];
   const lines = [
-    'TANK MIX ORDER — A.P.P.L.E.S. method (ND Weed Control Guide W-253, p.86)',
+    `TANK MIX ORDER — ${sc.title}`,
     '',
   ];
   let n = 1;
   lines.push(`${n++}. Fill tank 1/2–3/4 full with clean water and start agitation (keep agitating throughout).`);
-  let lastGroup = null;
+  let lastPhase = null;
   ordered.forEach((item) => {
-    if (item.group !== lastGroup) {
-      lines.push('', `   — Group ${item.group}: ${GROUP_NAMES[item.group]} (${GROUP_CODES[item.group]}) —`);
-      lastGroup = item.group;
+    const ph = sc.phaseOf(item);
+    if (ph !== lastPhase) {
+      const lab = sc.label(ph);
+      lines.push('', `   — ${lab.name}${lab.codes ? ' (' + lab.codes + ')' : ''} —`);
+      lastPhase = ph;
     }
     lines.push(`${n++}. ${item.name} [${item.code || '?'}${item.adjuvant ? ', adjuvant' : ''}]`);
     if (item.note) lines.push(`      note: ${item.note}`);
@@ -286,6 +335,17 @@ $('customAdd').addEventListener('click', addCustom);
 $('customCancel').addEventListener('click', closeCustomForm);
 customName.addEventListener('keydown', (e) => { if (e.key === 'Enter') addCustom(); });
 
+/* ---- Order scheme toggle ---- */
+document.querySelectorAll('input[name="scheme"]').forEach((r) => {
+  if (r.value === currentScheme) r.checked = true;
+  r.addEventListener('change', () => {
+    if (!r.checked) return;
+    currentScheme = r.value;
+    localStorage.setItem('mixScheme', currentScheme);
+    renderOrder();
+  });
+});
+
 function renderChips() {
   chips.innerHTML = '';
   if (!selected.length) {
@@ -302,15 +362,14 @@ function renderChips() {
   });
 }
 
-/* order: by group, pesticides before adjuvants within each group */
+/* order items by the active scheme's phases (granular/unknown items drop out) */
 function orderedItems() {
-  const ordered = [];
-  for (const g of GROUP_ORDER) {
-    const inGroup = selected.filter((s) => s.group === g);
-    inGroup.sort((a, b) => (a.adjuvant ? 1 : 0) - (b.adjuvant ? 1 : 0));
-    ordered.push(...inGroup);
-  }
-  return ordered;
+  const sc = SCHEMES[currentScheme];
+  return selected
+    .map((it, i) => ({ it, i, ph: sc.phaseOf(it) }))
+    .filter((x) => x.ph != null)
+    .sort((a, b) => (a.ph - b.ph) || (sc.secondary(a.it) - sc.secondary(b.it)) || (a.i - b.i))
+    .map((x) => x.it);
 }
 
 /* plain-text warning strings (shared by the warning box and the copied text) */
@@ -362,16 +421,20 @@ function renderOrder() {
     Keep agitating the whole time.`;
   ol.appendChild(first);
 
-  let lastGroup = null;
+  const sc = SCHEMES[currentScheme];
+  let lastPhase = null, phaseNum = 0;
   ordered.forEach((item) => {
-    if (item.group !== lastGroup) {
+    const ph = sc.phaseOf(item);
+    if (ph !== lastPhase) {
+      phaseNum++;
+      const lab = sc.label(ph);
       const head = document.createElement('li');
       head.className = 'group-head';
-      head.innerHTML = `<span class="g-num">${item.group}</span>
-        ${esc(GROUP_NAMES[item.group])}
-        <small>${esc(GROUP_CODES[item.group])}</small>`;
+      head.innerHTML = `<span class="g-num">${phaseNum}</span>
+        ${esc(lab.name)}
+        <small>${esc(lab.codes || '')}</small>`;
       ol.appendChild(head);
-      lastGroup = item.group;
+      lastPhase = ph;
     }
     const li = document.createElement('li');
     li.className = 'step' + (item.adjuvant ? ' step-adj' : '');
