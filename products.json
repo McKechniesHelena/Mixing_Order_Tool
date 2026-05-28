@@ -1890,28 +1890,28 @@
   "ai": "glyphosate-ipa salt"
  },
  {
+  "name": "Roundup PowerMax",
+  "code": "SL",
+  "group": 5,
+  "groupLabel": "Solutions (S, SL)",
+  "ai": "Roundup glyphosate-K salt"
+ },
+ {
+  "name": "Roundup PowerMax 3",
+  "code": "SL",
+  "group": 5,
+  "groupLabel": "Solutions (S, SL)",
+  "ai": "Roundup glyphosate-K salt"
+ },
+ {
+  "name": "Roundup WeatherMax",
+  "code": "SL",
+  "group": 5,
+  "groupLabel": "Solutions (S, SL)",
+  "ai": "Roundup glyphosate-K salt"
+ },
+ {
   "name": "RT 3",
-  "code": "SL",
-  "group": 5,
-  "groupLabel": "Solutions (S, SL)",
-  "ai": "Roundup glyphosate-K salt"
- },
- {
-  "name": "RU PowerMax",
-  "code": "SL",
-  "group": 5,
-  "groupLabel": "Solutions (S, SL)",
-  "ai": "Roundup glyphosate-K salt"
- },
- {
-  "name": "RU PowerMax 3",
-  "code": "SL",
-  "group": 5,
-  "groupLabel": "Solutions (S, SL)",
-  "ai": "Roundup glyphosate-K salt"
- },
- {
-  "name": "RU WeatherMax",
   "code": "SL",
   "group": 5,
   "groupLabel": "Solutions (S, SL)",

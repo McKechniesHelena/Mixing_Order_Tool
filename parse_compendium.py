@@ -92,6 +92,7 @@ for line in RAW.splitlines():
         continue
     name = s[:cmatch.start()].strip()
     name = strip_soa(name)
+    name = re.sub(r'^RU\b', 'Roundup', name)  # guide abbreviates Roundup as "RU"
     if not name:
         continue
     post = s[cmatch.end():]
