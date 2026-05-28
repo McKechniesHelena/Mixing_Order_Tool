@@ -75,6 +75,22 @@ ADJUVANTS.forEach((a) => {
   adjBar.appendChild(b);
 });
 
+/* Commonly-used Helena adjuvants — pulled from the product data so they carry
+   the correct group, code and notes. */
+const HELENA_QUICK = ['Zaar', 'Dyne-Amic', 'Cohort', 'Smoke', 'Hel-Fire', 'Fire-Zone'];
+const helenaBar = $('helenaAdjuvants');
+HELENA_QUICK.forEach((name) => {
+  const prod = products.find((p) => p.name.toLowerCase() === name.toLowerCase());
+  if (!prod) return;
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'adj-btn';
+  b.textContent = '+ ' + prod.name;
+  b.title = prod.ai || prod.name;
+  b.onclick = () => addItem(prod);
+  helenaBar.appendChild(b);
+});
+
 /* ---- Selection ---- */
 function keyOf(item) { return (item.adjuvant ? 'adj:' : 'prod:') + item.name; }
 
