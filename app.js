@@ -58,7 +58,48 @@ const INDUSTRY_LABELS = {
   8: { name: 'Drift / defoaming agents', codes: 'add last' },
 };
 
+const HELENA_LABELS = {
+  2: { name: 'Water conditioners / AMS / foam control', codes: 'add early (guide steps 2–3)' },
+  4: { name: 'Dry water-soluble products', codes: 'SG, SP — allow 10–15 min' },
+  5: { name: 'Water-dispersible granules / dry flowables', codes: 'WDG, DF, WP — allow 10–15 min' },
+  6: { name: 'Suspensions / liquid flowables', codes: 'SC, SE, ME, F, L, CS, ZC' },
+  7: { name: 'Dispersible & emulsifiable concentrates', codes: 'DC, EC, EW, OD' },
+  8: { name: 'Soluble liquids', codes: 'S, SL' },
+  11: { name: 'Drift reduction agents', codes: 'polymer-based here; add starch/guar types FIRST' },
+  12: { name: 'Surfactants / remaining adjuvants', codes: 'NIS' },
+  13: { name: 'Oil-based adjuvants', codes: 'COC, MSO — add last' },
+};
+
 const SCHEMES = {
+  helena: {
+    title: 'Helena NBU 2026 Product Guide mixing order (p.95)',
+    startFill: 'Fill the tank 1/3–1/2 full with clean water and start agitation. Keep agitating throughout.',
+    nearFullBefore: 11,   // fill nearly full before adding DRAs / final adjuvants (guide step 9)
+    endText: 'Keep agitating and spray promptly.',
+    phaseOf: (item) => {
+      if (item.adjuvant) {
+        if (item.group === 1) return 2;                 // water conditioners / AMS
+        if (item.group === 4) return 13;                // oil-based adjuvants last
+        if (item.group === 5) {
+          if (/AF/i.test(item.code || '')) return 2;    // foam control
+          if (/DRA/i.test(item.code || '') || /\blast\b/i.test(item.note || '')) return 11;
+          return 12;                                    // surfactants (NIS)
+        }
+        return null;
+      }
+      if ((item.code || '').toUpperCase() === 'DC') return 7;  // DC sits with the ECs
+      switch (item.group) {
+        case 1: return 4;   // dry water-soluble
+        case 2: return 5;   // WDG / DF / WP
+        case 3: return 6;   // suspensions / flowables
+        case 4: return 7;   // emulsifiable concentrates
+        case 5: return 8;   // soluble liquids
+        default: return null;
+      }
+    },
+    secondary: () => 0,
+    label: (ph) => HELENA_LABELS[ph],
+  },
   apples: {
     title: 'A.P.P.L.E.S. method (ND Weed Control Guide W-253, p.86)',
     phaseOf: (item) => (item.group >= 1 && item.group <= 5 ? item.group : null),
@@ -89,7 +130,8 @@ const SCHEMES = {
   },
 };
 
-let currentScheme = SCHEMES[localStorage.getItem('mixScheme')] ? localStorage.getItem('mixScheme') : 'apples';
+const SCHEME_KEY = 'mixSchemeV2';
+let currentScheme = SCHEMES[localStorage.getItem(SCHEME_KEY)] ? localStorage.getItem(SCHEME_KEY) : 'helena';
 
 /* ---- State ---- */
 const selected = [];   // array of item objects
@@ -222,10 +264,14 @@ function orderToText() {
     '',
   ];
   let n = 1;
-  lines.push(`${n++}. Fill tank 1/2–3/4 full with clean water and start agitation (keep agitating throughout).`);
-  let lastPhase = null;
+  lines.push(`${n++}. ${sc.startFill || 'Fill tank 1/2–3/4 full with clean water and start agitation (keep agitating throughout).'}`);
+  let lastPhase = null, nearFullDone = false;
   ordered.forEach((item) => {
     const ph = sc.phaseOf(item);
+    if (sc.nearFullBefore != null && !nearFullDone && ph >= sc.nearFullBefore) {
+      lines.push('', `${n++}. Fill the tank nearly full with water, keep agitating.`);
+      nearFullDone = true;
+    }
     if (ph !== lastPhase) {
       const lab = sc.label(ph);
       lines.push('', `   — ${lab.name}${lab.codes ? ' (' + lab.codes + ')' : ''} —`);
@@ -234,7 +280,7 @@ function orderToText() {
     lines.push(`${n++}. ${item.name} [${item.code || '?'}${item.adjuvant ? ', adjuvant' : ''}]`);
     if (item.note) lines.push(`      note: ${item.note}`);
   });
-  lines.push('', `${n++}. Top off with the remaining water, keep agitating, and spray promptly.`);
+  lines.push('', `${n++}. ${sc.endText || 'Top off with the remaining water, keep agitating, and spray promptly.'}`);
 
   const warns = computeWarnings();
   if (warns.length) {
@@ -341,7 +387,7 @@ document.querySelectorAll('input[name="scheme"]').forEach((r) => {
   r.addEventListener('change', () => {
     if (!r.checked) return;
     currentScheme = r.value;
-    localStorage.setItem('mixScheme', currentScheme);
+    localStorage.setItem(SCHEME_KEY, currentScheme);
     renderOrder();
   });
 });
@@ -415,16 +461,26 @@ function renderOrder() {
   const ol = document.createElement('ol');
   ol.className = 'steps';
 
+  const sc = SCHEMES[currentScheme];
+
   const first = document.createElement('li');
   first.className = 'step-water';
-  first.innerHTML = `Fill the tank <b>½–¾ full</b> with clean water and <b>start agitation</b>.
-    Keep agitating the whole time.`;
+  first.innerHTML = sc.startFill
+    ? esc(sc.startFill)
+    : `Fill the tank <b>½–¾ full</b> with clean water and <b>start agitation</b>.
+       Keep agitating the whole time.`;
   ol.appendChild(first);
 
-  const sc = SCHEMES[currentScheme];
-  let lastPhase = null, phaseNum = 0;
+  let lastPhase = null, phaseNum = 0, nearFullDone = false;
   ordered.forEach((item) => {
     const ph = sc.phaseOf(item);
+    if (sc.nearFullBefore != null && !nearFullDone && ph >= sc.nearFullBefore) {
+      const nf = document.createElement('li');
+      nf.className = 'step-water';
+      nf.innerHTML = `Fill the tank <b>nearly full</b> with water, keep agitating.`;
+      ol.appendChild(nf);
+      nearFullDone = true;
+    }
     if (ph !== lastPhase) {
       phaseNum++;
       const lab = sc.label(ph);
@@ -447,7 +503,9 @@ function renderOrder() {
 
   const last = document.createElement('li');
   last.className = 'step-water';
-  last.innerHTML = `Top off with the remaining water, keep agitating, and <b>spray promptly</b>.`;
+  last.innerHTML = sc.endText
+    ? esc(sc.endText)
+    : `Top off with the remaining water, keep agitating, and <b>spray promptly</b>.`;
   ol.appendChild(last);
 
   frag.appendChild(ol);
