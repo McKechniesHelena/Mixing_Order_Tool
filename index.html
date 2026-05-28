@@ -28,6 +28,48 @@
         <span class="adj-label">Adjuvants:</span>
         <div id="adjuvants" class="adj-bar"></div>
       </div>
+      <div class="custom-wrap">
+        <button id="customToggle" class="link-btn" type="button">+ Add a custom product</button>
+        <div id="customForm" class="custom-form" hidden>
+          <input id="customName" type="text" autocomplete="off" placeholder="Product name (e.g. Atrazine 4L)">
+          <select id="customCode" aria-label="Formulation">
+            <optgroup label="1 · Soluble powders">
+              <option value="SG">SG — soluble granule</option>
+              <option value="SP">SP — soluble powder</option>
+            </optgroup>
+            <optgroup label="2 · Dry powders">
+              <option value="DF">DF — dry flowable</option>
+              <option value="WDG">WDG — water-dispersible granule</option>
+              <option value="WG">WG — water-dispersible granule</option>
+              <option value="WP">WP — wettable powder</option>
+            </optgroup>
+            <optgroup label="3 · Liquid flowables / suspensions">
+              <option value="SC">SC — suspension concentrate</option>
+              <option value="SE">SE — suspoemulsion</option>
+              <option value="ME">ME — microemulsion</option>
+              <option value="F">F — flowable</option>
+              <option value="L">L — liquid</option>
+              <option value="CS">CS — capsule suspension</option>
+              <option value="ZC">ZC — encapsulated + suspension</option>
+              <option value="DC">DC — dispersible concentrate</option>
+            </optgroup>
+            <optgroup label="4 · Emulsifiable concentrates">
+              <option value="EC">EC — emulsifiable concentrate</option>
+              <option value="EW">EW — emulsion, oil in water</option>
+              <option value="OD">OD — oil dispersion</option>
+            </optgroup>
+            <optgroup label="5 · Solutions">
+              <option value="S">S — solution</option>
+              <option value="SL">SL — soluble liquid</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option value="">Not sure / not listed</option>
+            </optgroup>
+          </select>
+          <button id="customAdd" class="copy-btn" type="button">Add</button>
+          <button id="customCancel" class="link-btn" type="button">Cancel</button>
+        </div>
+      </div>
       <div id="chips" class="chips"></div>
     </section>
 

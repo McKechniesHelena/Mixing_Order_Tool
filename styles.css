@@ -147,6 +147,29 @@ main {
 }
 .adj-btn:hover { background: #eff5ff; }
 
+/* custom product */
+.custom-wrap { margin-top: 10px; }
+.custom-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.custom-form input, .custom-form select {
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.custom-form input { flex: 1 1 180px; }
+.custom-form input:focus, .custom-form select:focus { outline: none; border-color: var(--green); }
+.custom-form select { flex: 1 1 220px; }
+
+.s-custom { color: var(--green-dk); }
+.s-custom:hover { background: var(--green-lt); }
+
 /* chips */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .empty { color: var(--muted); font-style: italic; margin: 6px 0; }
@@ -287,4 +310,5 @@ footer {
   .chip { font-size: .95rem; padding: 7px 8px 7px 14px; }
   .chip button { width: 28px; height: 28px; }
   .steps .step, .steps .step-water { padding: 14px 12px 14px 48px; }
+  .custom-form input, .custom-form select, .custom-form .copy-btn { flex-basis: 100%; width: 100%; }
 }

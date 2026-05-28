@@ -34,6 +34,15 @@ const ADJUVANTS = [
     note: 'Add last, as needed.' },
 ];
 
+/* Formulation code -> A.P.P.L.E.S. group, for custom products */
+const CODE_GROUP = {
+  SG: 1, SP: 1,
+  DF: 2, WDG: 2, WG: 2, WP: 2,
+  SC: 3, SE: 3, ME: 3, F: 3, L: 3, CS: 3, ZC: 3, DC: 3,
+  EC: 4, EW: 4, OD: 4,
+  S: 5, SL: 5,
+};
+
 const isDicamba = (ai) => /dicamba|\bdic[-.]/i.test(ai || '');
 
 /* ---- State ---- */
@@ -50,6 +59,10 @@ const output = $('output');
 const copyBtn = $('copyBtn');
 const simpleCopyBtn = $('simpleCopyBtn');
 const clearBtn = $('clearBtn');
+const customToggle = $('customToggle');
+const customForm = $('customForm');
+const customName = $('customName');
+const customCode = $('customCode');
 
 /* ---- Build adjuvant quick-add buttons ---- */
 ADJUVANTS.forEach((a) => {
@@ -95,6 +108,7 @@ function search(q) {
 }
 
 searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim();
   const results = search(searchInput.value);
   suggestions.innerHTML = '';
   results.forEach((p) => {
@@ -105,6 +119,13 @@ searchInput.addEventListener('input', () => {
     li.onclick = () => addItem(p);
     suggestions.appendChild(li);
   });
+  if (q && !results.length) {
+    const li = document.createElement('li');
+    li.className = 's-custom';
+    li.innerHTML = `No matches — <b>add “${esc(q)}” as a custom product</b>`;
+    li.onclick = () => openCustomForm(q);
+    suggestions.appendChild(li);
+  }
 });
 
 searchInput.addEventListener('keydown', (e) => {
@@ -211,6 +232,44 @@ clearBtn.addEventListener('click', () => {
   render();
 });
 
+/* ---- Custom product ---- */
+function openCustomForm(prefill) {
+  customForm.hidden = false;
+  customName.value = prefill || '';
+  suggestions.innerHTML = '';
+  customName.focus();
+}
+
+function closeCustomForm() {
+  customForm.hidden = true;
+  customName.value = '';
+}
+
+function addCustom() {
+  const name = customName.value.trim();
+  if (!name) { customName.focus(); return; }
+  const code = customCode.value || null;
+  const group = code ? CODE_GROUP[code] : null;
+  addItem({
+    name,
+    code,
+    group: group == null ? null : group,
+    groupLabel: group ? GROUP_NAMES[group] : 'Unknown — check product label',
+    ai: name,                 // so the dicamba check can still catch e.g. "Dicamba HD"
+    adjuvant: false,
+    custom: true,
+  });
+  closeCustomForm();
+}
+
+customToggle.addEventListener('click', () => {
+  if (customForm.hidden) openCustomForm(searchInput.value.trim());
+  else closeCustomForm();
+});
+$('customAdd').addEventListener('click', addCustom);
+$('customCancel').addEventListener('click', closeCustomForm);
+customName.addEventListener('keydown', (e) => { if (e.key === 'Enter') addCustom(); });
+
 function renderChips() {
   chips.innerHTML = '';
   if (!selected.length) {
@@ -301,7 +360,7 @@ function renderOrder() {
     const li = document.createElement('li');
     li.className = 'step' + (item.adjuvant ? ' step-adj' : '');
     li.innerHTML = `<span class="nm">${esc(item.name)}</span>
-      <span class="tag">${esc(item.code || '?')}${item.adjuvant ? ' · adjuvant' : ''}</span>
+      <span class="tag">${esc(item.code || '?')}${item.adjuvant ? ' · adjuvant' : ''}${item.custom ? ' · custom' : ''}</span>
       ${item.note ? `<span class="note">${esc(item.note)}</span>` : ''}
       <span class="hint">Mix until fully dispersed before adding the next.</span>`;
     ol.appendChild(li);
