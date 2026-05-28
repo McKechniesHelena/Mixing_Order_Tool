@@ -1,0 +1,12 @@
+# Local preview server config
+.claude/
+
+# Source PDF (copyrighted NDSU W-253 — not redistributed; data is derived into data.js)
+*.pdf
+
+# Intermediate extraction text (regenerable from the PDF via parse_compendium.py)
+compendium_raw.txt
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store

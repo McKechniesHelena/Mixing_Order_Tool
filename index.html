@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tank Mix Order Helper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Tank Mix Order Helper</h1>
+    <p class="sub">Correct order to add chemicals &amp; adjuvants to the spray tank —
+      based on the <b>A.P.P.L.E.S.</b> method, ND Weed Control Guide (W-253, 2026), p.86.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>1 · Add your products</h2>
+      <div class="search-wrap">
+        <input id="search" type="text" autocomplete="off"
+          placeholder="Search by product or chemical (e.g. Roundup, Clarity, glyphosate)…">
+        <ul id="suggestions" class="suggestions"></ul>
+      </div>
+      <div class="adj-row">
+        <span class="adj-label">Adjuvants:</span>
+        <div id="adjuvants" class="adj-bar"></div>
+      </div>
+      <div id="chips" class="chips"></div>
+    </section>
+
+    <section class="panel">
+      <h2>2 · Mixing order</h2>
+      <div id="output" class="output"></div>
+    </section>
+
+    <section class="panel ref">
+      <h2>A.P.P.L.E.S. order</h2>
+      <ol class="ref-list">
+        <li><span class="g-num">1</span> Soluble powders <small>SG, SP, dry fertilizer (incl. AMS)</small></li>
+        <li><span class="g-num">2</span> Dry powders <small>DF, WDG, WP</small></li>
+        <li><span class="g-num">3</span> Liquid flowables / suspensions <small>SC, SE, ME, F, L, CS, ZC</small></li>
+        <li><span class="g-num">4</span> Emulsifiable concentrates <small>EC, EW, OD (incl. oil adjuvants)</small></li>
+        <li><span class="g-num">5</span> Solutions <small>S, SL (incl. surfactants)</small></li>
+      </ol>
+      <p class="ref-note">Agitate throughout. Each component must be fully mixed before the next.
+        Within a group, add the pesticide before the adjuvant.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Reference only. Always read and follow individual product labels. Data from NDSU
+      Extension W-253 (2026). Not affiliated with NDSU.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
