@@ -357,7 +357,21 @@ function wireCopy(btn, label, textFn) {
 wireCopy(copyBtn, 'Copy order', orderToText);
 wireCopy(simpleCopyBtn, 'Simple copy', simpleToText);
 
-printBtn.addEventListener('click', () => window.print());
+/* Filename / title built from the products in the mix, e.g. "Tapout+Zaar+Atrazine". */
+function mixFilename() {
+  const names = orderedItems().map((it) => it.name);
+  if (!names.length) return 'tank-mix-order';
+  let base = names.join('+').replace(/[\\/:*?"<>|]+/g, '-').trim();
+  if (base.length > 120) base = base.slice(0, 120);
+  return base;
+}
+
+printBtn.addEventListener('click', () => {
+  const original = document.title;
+  document.title = mixFilename();
+  window.addEventListener('afterprint', () => { document.title = original; }, { once: true });
+  window.print();
+});
 
 /* Render the mixing-order panel to a PNG: copy to clipboard if the browser
    allows it, otherwise download the file so it can be shared. */
@@ -375,7 +389,7 @@ function downloadBlob(blob) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'tank-mix-order.png';
+  a.download = mixFilename() + '.png';
   document.body.appendChild(a);
   a.click();
   a.remove();
