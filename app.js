@@ -181,7 +181,7 @@ ADJUVANTS.forEach((a) => {
 
 /* Commonly-used Helena adjuvants — pulled from the product data so they carry
    the correct group, code and notes. */
-const HELENA_QUICK = ['Zaar', 'Dyne-Amic', 'Cohort', 'Smoke', 'Hel-Fire', 'Fire-Zone'];
+const HELENA_QUICK = ['Zaar', 'Dyne-Amic', 'Cohort', 'Smoke', 'Hel-Fire', 'Fire-Zone', 'Grounded'];
 const helenaBar = $('helenaAdjuvants');
 HELENA_QUICK.forEach((name) => {
   const prod = products.find((p) => p.name.toLowerCase() === name.toLowerCase());
