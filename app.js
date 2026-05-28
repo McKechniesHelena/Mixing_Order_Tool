@@ -162,6 +162,7 @@ const output = $('output');
 const copyBtn = $('copyBtn');
 const simpleCopyBtn = $('simpleCopyBtn');
 const printBtn = $('printBtn');
+const imgBtn = $('imgBtn');
 const clearBtn = $('clearBtn');
 const customToggle = $('customToggle');
 const customForm = $('customForm');
@@ -268,6 +269,7 @@ function render() {
   copyBtn.hidden = empty;
   simpleCopyBtn.hidden = empty;
   printBtn.hidden = empty;
+  imgBtn.hidden = empty;
   clearBtn.hidden = selected.length === 0;
 }
 
@@ -356,6 +358,54 @@ wireCopy(copyBtn, 'Copy order', orderToText);
 wireCopy(simpleCopyBtn, 'Simple copy', simpleToText);
 
 printBtn.addEventListener('click', () => window.print());
+
+/* Render the mixing-order panel to a PNG: copy to clipboard if the browser
+   allows it, otherwise download the file so it can be shared. */
+async function captureBlob() {
+  document.body.classList.add('capturing');
+  try {
+    const canvas = await html2canvas(output, { backgroundColor: '#ffffff', scale: 2 });
+    return await new Promise((res) => canvas.toBlob(res, 'image/png'));
+  } finally {
+    document.body.classList.remove('capturing');
+  }
+}
+
+function downloadBlob(blob) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'tank-mix-order.png';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+imgBtn.addEventListener('click', async () => {
+  if (typeof html2canvas !== 'function') return;
+  imgBtn.textContent = 'Saving…';
+  try {
+    const blob = await captureBlob();
+    if (!blob) throw new Error('no image');
+    let copied = false;
+    if (navigator.clipboard && window.ClipboardItem && window.isSecureContext) {
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+        copied = true;
+      } catch { /* clipboard image not allowed — fall back to download */ }
+    }
+    if (!copied) downloadBlob(blob);
+    imgBtn.textContent = copied ? 'Copied ✓' : 'Saved ✓';
+    imgBtn.classList.add('done');
+  } catch {
+    imgBtn.textContent = 'Save failed';
+  }
+  setTimeout(() => {
+    imgBtn.textContent = 'Save image';
+    imgBtn.classList.remove('done');
+  }, 1800);
+});
 
 clearBtn.addEventListener('click', () => {
   selected.length = 0;

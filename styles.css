@@ -346,8 +346,15 @@ footer {
   color: var(--muted);
 }
 
-/* print-only title (scheme name) — hidden on screen */
+/* scheme title — hidden on screen, shown in print and image captures */
 .print-title { display: none; }
+body.capturing .print-title {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--green-dk);
+  margin: 0 0 12px;
+}
 
 @media print {
   header, footer, .ref, .copy-actions, .scheme-row { display: none !important; }
