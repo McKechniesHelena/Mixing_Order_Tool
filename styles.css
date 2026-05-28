@@ -9,6 +9,8 @@
   --line: #d7e0d9;
   --bg: #f6f8f6;
   --adj: #2563eb;
+  --head: #3d4f5d;
+  --head-lt: #eaeef1;
 }
 
 * { box-sizing: border-box; }
@@ -278,20 +280,25 @@ main {
 .step .hint { display: block; font-size: .76rem; color: var(--muted); margin-top: 2px; }
 
 .group-head {
-  margin: 14px 0 8px;
+  margin: 16px 0 8px;
+  padding: 7px 12px;
   font-weight: 700;
-  color: var(--green-dk);
+  color: #fff;
+  background: var(--head);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
-.group-head small { font-weight: 500; color: var(--muted); font-size: .78rem; }
+.group-head small { font-weight: 500; color: rgba(255,255,255,.78); font-size: .78rem; }
 
 .g-num {
   display: inline-grid;
   place-items: center;
   width: 22px; height: 22px;
-  background: var(--green-dk);
+  background: rgba(255,255,255,.22);
   color: #fff;
   border-radius: 6px;
   font-size: .8rem;
@@ -315,6 +322,36 @@ footer {
   padding: 20px;
   font-size: .78rem;
   color: var(--muted);
+}
+
+/* print-only title (scheme name) — hidden on screen */
+.print-title { display: none; }
+
+@media print {
+  header, footer, .ref, .copy-actions, .scheme-row { display: none !important; }
+  /* hide the "Add your products" panel */
+  main > section.panel:first-of-type { display: none !important; }
+
+  body { background: #fff; color: #000; }
+  main { display: block; max-width: none; margin: 0; padding: 0; }
+  .panel { border: none; border-radius: 0; padding: 0; }
+  .panel h2 { display: none; }
+
+  .print-title {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 14px;
+  }
+
+  .steps .step, .steps .step-water, .group-head { break-inside: avoid; }
+  .step .hint { color: #555; }
+  .steps .step::before, .steps .step-water::before,
+  .step-water, .step-adj, .warnings {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }
 
 @media (max-width: 520px) {

@@ -99,12 +99,22 @@ const SCHEMES = {
     },
     secondary: () => 0,
     label: (ph) => HELENA_LABELS[ph],
+    refTitle: 'Helena (NBU p.95) order',
+    refPhases: [2, 4, 5, 6, 7, 8, 11, 12, 13],
+    refNote: 'Helena NBU 2026 Product Guide, p.95. Fill 1/3–1/2 with water and agitate '
+      + 'throughout; allow each product to fully disperse. Add starch/guar drift agents '
+      + 'first and oil-based adjuvants last.',
   },
   apples: {
     title: 'A.P.P.L.E.S. method (ND Weed Control Guide W-253, p.86)',
     phaseOf: (item) => (item.group >= 1 && item.group <= 5 ? item.group : null),
     secondary: (item) => (item.adjuvant ? 1 : 0),   // pesticide before adjuvant
     label: (ph) => ({ name: GROUP_NAMES[ph], codes: GROUP_CODES[ph] }),
+    refTitle: 'A.P.P.L.E.S. order',
+    refPhases: [1, 2, 3, 4, 5],
+    refNote: 'Agitate throughout. Each component must be fully mixed before the next. '
+      + 'Within a group, add the pesticide before the adjuvant '
+      + '(AMS with the soluble powders, oils with the ECs, surfactants with the solutions).',
   },
   industry: {
     title: 'Solutions-before-EC order (label / industry sequence)',
@@ -127,6 +137,11 @@ const SCHEMES = {
     },
     secondary: () => 0,
     label: (ph) => INDUSTRY_LABELS[ph],
+    refTitle: 'Solutions-before-EC order',
+    refPhases: [0, 2, 3, 4, 5, 6, 7, 8],
+    refNote: 'Soluble liquids / solutions go in before the emulsifiable concentrates. '
+      + 'Agitate throughout; each product fully mixed before the next. Adjuvants follow '
+      + 'their formulation group, drift / defoaming agents last.',
   },
 };
 
@@ -146,6 +161,7 @@ const adjBar = $('adjuvants');
 const output = $('output');
 const copyBtn = $('copyBtn');
 const simpleCopyBtn = $('simpleCopyBtn');
+const printBtn = $('printBtn');
 const clearBtn = $('clearBtn');
 const customToggle = $('customToggle');
 const customForm = $('customForm');
@@ -251,6 +267,7 @@ function render() {
   const empty = orderedItems().length === 0;
   copyBtn.hidden = empty;
   simpleCopyBtn.hidden = empty;
+  printBtn.hidden = empty;
   clearBtn.hidden = selected.length === 0;
 }
 
@@ -338,6 +355,8 @@ function wireCopy(btn, label, textFn) {
 wireCopy(copyBtn, 'Copy order', orderToText);
 wireCopy(simpleCopyBtn, 'Simple copy', simpleToText);
 
+printBtn.addEventListener('click', () => window.print());
+
 clearBtn.addEventListener('click', () => {
   selected.length = 0;
   render();
@@ -389,8 +408,27 @@ document.querySelectorAll('input[name="scheme"]').forEach((r) => {
     currentScheme = r.value;
     localStorage.setItem(SCHEME_KEY, currentScheme);
     renderOrder();
+    renderReference();
   });
 });
+
+/* ---- Reference panel (reflects the selected scheme) ---- */
+const refTitleEl = $('refTitle');
+const refListEl = $('refList');
+const refNoteEl = $('refNote');
+
+function renderReference() {
+  const sc = SCHEMES[currentScheme];
+  refTitleEl.textContent = sc.refTitle || sc.title;
+  refListEl.innerHTML = (sc.refPhases || [])
+    .map((ph, i) => {
+      const lab = sc.label(ph) || {};
+      return `<li><span class="g-num">${i + 1}</span> ${esc(lab.name || '')}
+        ${lab.codes ? `<small>${esc(lab.codes)}</small>` : ''}</li>`;
+    })
+    .join('');
+  refNoteEl.textContent = sc.refNote || '';
+}
 
 function renderChips() {
   chips.innerHTML = '';
@@ -448,6 +486,11 @@ function renderOrder() {
   const ordered = orderedItems();
   const frag = document.createDocumentFragment();
 
+  const pt = document.createElement('p');
+  pt.className = 'print-title';
+  pt.textContent = 'Tank mix order — ' + SCHEMES[currentScheme].title;
+  frag.appendChild(pt);
+
   const warns = computeWarnings();
   if (warns.length) {
     const w = document.createElement('div');
@@ -471,7 +514,7 @@ function renderOrder() {
        Keep agitating the whole time.`;
   ol.appendChild(first);
 
-  let lastPhase = null, phaseNum = 0, nearFullDone = false;
+  let lastPhase = null, nearFullDone = false;
   ordered.forEach((item) => {
     const ph = sc.phaseOf(item);
     if (sc.nearFullBefore != null && !nearFullDone && ph >= sc.nearFullBefore) {
@@ -482,12 +525,10 @@ function renderOrder() {
       nearFullDone = true;
     }
     if (ph !== lastPhase) {
-      phaseNum++;
       const lab = sc.label(ph);
       const head = document.createElement('li');
       head.className = 'group-head';
-      head.innerHTML = `<span class="g-num">${phaseNum}</span>
-        ${esc(lab.name)}
+      head.innerHTML = `${esc(lab.name)}
         <small>${esc(lab.codes || '')}</small>`;
       ol.appendChild(head);
       lastPhase = ph;
@@ -520,3 +561,4 @@ function renderOrder() {
 }
 
 render();
+renderReference();

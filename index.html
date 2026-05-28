@@ -83,6 +83,7 @@
         <div class="copy-actions">
           <button id="simpleCopyBtn" class="copy-btn" type="button" hidden>Simple copy</button>
           <button id="copyBtn" class="copy-btn" type="button" hidden>Copy order</button>
+          <button id="printBtn" class="copy-btn" type="button" hidden>Print</button>
         </div>
       </div>
       <div class="scheme-row" role="radiogroup" aria-label="Mixing order scheme">
@@ -98,16 +99,9 @@
     </section>
 
     <section class="panel ref">
-      <h2>A.P.P.L.E.S. order</h2>
-      <ol class="ref-list">
-        <li><span class="g-num">1</span> Soluble powders <small>SG, SP, dry fertilizer (incl. AMS)</small></li>
-        <li><span class="g-num">2</span> Dry powders <small>DF, WDG, WP</small></li>
-        <li><span class="g-num">3</span> Liquid flowables / suspensions <small>SC, SE, ME, F, L, CS, ZC, DC</small></li>
-        <li><span class="g-num">4</span> Emulsifiable concentrates <small>EC, EW, OD (incl. oil adjuvants)</small></li>
-        <li><span class="g-num">5</span> Solutions <small>S, SL (incl. surfactants)</small></li>
-      </ol>
-      <p class="ref-note">Agitate throughout. Each component must be fully mixed before the next.
-        Within a group, add the pesticide before the adjuvant.</p>
+      <h2 id="refTitle">A.P.P.L.E.S. order</h2>
+      <ol class="ref-list" id="refList"></ol>
+      <p class="ref-note" id="refNote"></p>
     </section>
   </main>
 
