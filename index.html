@@ -15,7 +15,10 @@
 
   <main>
     <section class="panel">
-      <h2>1 · Add your products</h2>
+      <div class="panel-head">
+        <h2>1 · Add your products</h2>
+        <button id="clearBtn" class="link-btn" type="button" hidden>Clear all</button>
+      </div>
       <div class="search-wrap">
         <input id="search" type="text" autocomplete="off"
           placeholder="Search by product or chemical (e.g. Roundup, Clarity, glyphosate)…">
@@ -29,7 +32,10 @@
     </section>
 
     <section class="panel">
-      <h2>2 · Mixing order</h2>
+      <div class="panel-head">
+        <h2>2 · Mixing order</h2>
+        <button id="copyBtn" class="copy-btn" type="button" hidden>Copy order</button>
+      </div>
       <div id="output" class="output"></div>
     </section>
 

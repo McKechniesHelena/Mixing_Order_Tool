@@ -19,6 +19,8 @@ body {
   color: var(--ink);
   background: var(--bg);
   line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(46, 111, 62, .15);
 }
 
 header {
@@ -50,6 +52,41 @@ main {
   text-transform: uppercase;
   letter-spacing: .04em;
 }
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.panel-head h2 { margin: 0; }
+
+.copy-btn {
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.copy-btn:hover { background: var(--green-lt); }
+.copy-btn.done { background: var(--green); color: #fff; border-color: var(--green); }
+
+.link-btn {
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+.link-btn:hover { color: var(--green-dk); }
 
 /* search */
 .search-wrap { position: relative; }
@@ -233,6 +270,19 @@ footer {
 }
 
 @media (max-width: 520px) {
-  .s-meta { display: none; }
+  .s-ai { display: none; }            /* keep the formulation code, drop the long AI text */
+  header { padding: 16px 14px; }
   header h1 { font-size: 1.25rem; }
+  main { padding: 14px 12px 36px; gap: 14px; }
+  .panel { padding: 14px; }
+
+  /* larger touch targets */
+  #search { padding: 14px; }
+  .suggestions li { padding: 14px; }
+  .suggestions { max-height: 60vh; }
+  .adj-btn { padding: 9px 15px; font-size: .9rem; }
+  .copy-btn { padding: 10px 16px; font-size: .9rem; }
+  .chip { font-size: .95rem; padding: 7px 8px 7px 14px; }
+  .chip button { width: 28px; height: 28px; }
+  .steps .step, .steps .step-water { padding: 14px 12px 14px 48px; }
 }

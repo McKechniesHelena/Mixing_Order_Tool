@@ -47,6 +47,8 @@ const suggestions = $('suggestions');
 const chips = $('chips');
 const adjBar = $('adjuvants');
 const output = $('output');
+const copyBtn = $('copyBtn');
+const clearBtn = $('clearBtn');
 
 /* ---- Build adjuvant quick-add buttons ---- */
 ADJUVANTS.forEach((a) => {
@@ -98,7 +100,7 @@ searchInput.addEventListener('input', () => {
     const li = document.createElement('li');
     const grp = p.group == null ? '?' : p.code;
     li.innerHTML = `<span class="s-name">${esc(p.name)}</span>
-      <span class="s-meta">${esc(p.ai || '')} <b>${esc(grp || '')}</b></span>`;
+      <span class="s-meta"><span class="s-ai">${esc(p.ai || '')}</span> <b>${esc(grp || '')}</b></span>`;
     li.onclick = () => addItem(p);
     suggestions.appendChild(li);
   });
@@ -120,7 +122,79 @@ function esc(s) {
 function render() {
   renderChips();
   renderOrder();
+  const ordered = orderedItems();
+  copyBtn.hidden = ordered.length === 0;
+  clearBtn.hidden = selected.length === 0;
 }
+
+/* ---- Plain-text export ---- */
+function orderToText() {
+  const ordered = orderedItems();
+  if (!ordered.length) return '';
+  const lines = [
+    'TANK MIX ORDER — A.P.P.L.E.S. method (ND Weed Control Guide W-253, p.86)',
+    '',
+  ];
+  let n = 1;
+  lines.push(`${n++}. Fill tank 1/2–3/4 full with clean water and start agitation (keep agitating throughout).`);
+  let lastGroup = null;
+  ordered.forEach((item) => {
+    if (item.group !== lastGroup) {
+      lines.push('', `   — Group ${item.group}: ${GROUP_NAMES[item.group]} (${GROUP_CODES[item.group]}) —`);
+      lastGroup = item.group;
+    }
+    lines.push(`${n++}. ${item.name} [${item.code || '?'}${item.adjuvant ? ', adjuvant' : ''}]`);
+    if (item.note) lines.push(`      note: ${item.note}`);
+  });
+  lines.push('', `${n++}. Top off with the remaining water, keep agitating, and spray promptly.`);
+
+  const warns = computeWarnings();
+  if (warns.length) {
+    lines.push('', 'WARNINGS:');
+    warns.forEach((w) => lines.push(`! ${w}`));
+  }
+  lines.push('', 'Reference only — always read and follow individual product labels.');
+  return lines.join('\n');
+}
+
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch { /* blocked (e.g. embedded frame) — fall back below */ }
+  }
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  const ok = document.execCommand('copy');
+  ta.remove();
+  if (!ok) throw new Error('copy command failed');
+}
+
+copyBtn.addEventListener('click', async () => {
+  const text = orderToText();
+  if (!text) return;
+  try {
+    await copyText(text);
+    copyBtn.textContent = 'Copied ✓';
+    copyBtn.classList.add('done');
+  } catch {
+    copyBtn.textContent = 'Copy failed';
+  }
+  setTimeout(() => {
+    copyBtn.textContent = 'Copy order';
+    copyBtn.classList.remove('done');
+  }, 1600);
+});
+
+clearBtn.addEventListener('click', () => {
+  selected.length = 0;
+  render();
+});
 
 function renderChips() {
   chips.innerHTML = '';
@@ -138,47 +212,55 @@ function renderChips() {
   });
 }
 
+/* order: by group, pesticides before adjuvants within each group */
+function orderedItems() {
+  const ordered = [];
+  for (const g of GROUP_ORDER) {
+    const inGroup = selected.filter((s) => s.group === g);
+    inGroup.sort((a, b) => (a.adjuvant ? 1 : 0) - (b.adjuvant ? 1 : 0));
+    ordered.push(...inGroup);
+  }
+  return ordered;
+}
+
+/* plain-text warning strings (shared by the warning box and the copied text) */
+function computeWarnings() {
+  const w = [];
+  const hasAMS = selected.some((s) => s.code === 'AMS' || s.code === 'AMS-L' || s.ammonium);
+  const dicambaProds = selected.filter((s) => isDicamba(s.ai)).map((s) => s.name);
+  if (hasAMS && dicambaProds.length) {
+    w.push(`Do not use AMS with dicamba. Ammonium increases dicamba volatility and reduces `
+      + `the effect of low-volatile formulations (guide p.86). `
+      + `Dicamba product(s) selected: ${dicambaProds.join(', ')}.`);
+  }
+  const unknown = selected.filter((s) => s.group == null);
+  if (unknown.length) {
+    w.push(`Formulation not listed for: ${unknown.map((u) => u.name).join(', ')}. `
+      + `Check the product label for its formulation and mixing sequence.`);
+  }
+  const granular = selected.filter((s) => s.group === 0);
+  if (granular.length) {
+    w.push(`Dry granular / soil-applied (not tank-mixed): ${granular.map((u) => u.name).join(', ')}. `
+      + `These are typically applied dry, not in a spray tank.`);
+  }
+  return w;
+}
+
 function renderOrder() {
   output.innerHTML = '';
   if (!selected.length) return;
 
-  const mixable = selected.filter((s) => s.group >= 1 && s.group <= 5);
-  const granular = selected.filter((s) => s.group === 0);
-  const unknown = selected.filter((s) => s.group == null);
-
-  // order: by group, pesticides before adjuvants within each group
-  const ordered = [];
-  for (const g of GROUP_ORDER) {
-    const inGroup = mixable.filter((s) => s.group === g);
-    inGroup.sort((a, b) => (a.adjuvant ? 1 : 0) - (b.adjuvant ? 1 : 0));
-    ordered.push(...inGroup);
-  }
-
+  const ordered = orderedItems();
   const frag = document.createDocumentFragment();
 
-  // warnings
-  const warns = [];
-  const hasAMS = selected.some((s) => s.code === 'AMS' || s.code === 'AMS-L' || s.ammonium);
-  const dicambaProds = selected.filter((s) => isDicamba(s.ai)).map((s) => s.name);
-  if (hasAMS && dicambaProds.length) {
-    warns.push(`<strong>Do not use AMS with dicamba.</strong> Ammonium increases dicamba
-      volatility and reduces the effect of low-volatile formulations (guide p.86).
-      Dicamba product(s) selected: ${esc(dicambaProds.join(', '))}.`);
-  }
-  if (unknown.length) {
-    warns.push(`Formulation not listed for: <strong>${esc(unknown.map((u) => u.name).join(', '))}</strong>.
-      Check the product label for its formulation and mixing sequence.`);
-  }
-  if (granular.length) {
-    warns.push(`Dry granular / soil-applied (not tank-mixed): <strong>${esc(granular.map((u) => u.name).join(', '))}</strong>.
-      These are typically applied dry, not in a spray tank.`);
-  }
+  const warns = computeWarnings();
   if (warns.length) {
     const w = document.createElement('div');
     w.className = 'warnings';
-    w.innerHTML = warns.map((t) => `<p>⚠ ${t}</p>`).join('');
+    w.innerHTML = warns.map((t) => `<p>⚠ ${esc(t)}</p>`).join('');
     frag.appendChild(w);
   }
+  if (!ordered.length) { output.appendChild(frag); return; }
 
   // steps
   const ol = document.createElement('ol');
