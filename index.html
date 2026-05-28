@@ -23,6 +23,13 @@
           placeholder="Search by product or chemical (e.g. Roundup, Clarity, glyphosate)…">
         <ul id="suggestions" class="suggestions"></ul>
       </div>
+      <div class="selected-box">
+        <div class="selected-head">
+          <h3>Selected products</h3>
+          <button id="clearBtn" class="link-btn" type="button" hidden>Clear all</button>
+        </div>
+        <div id="chips" class="chips"></div>
+      </div>
       <div class="adj-row">
         <span class="adj-label">Helena adjuvants:</span>
         <div id="helenaAdjuvants" class="adj-bar"></div>
@@ -73,14 +80,6 @@
           <button id="customCancel" class="link-btn" type="button">Cancel</button>
         </div>
       </div>
-    </section>
-
-    <section class="panel selected-panel">
-      <div class="panel-head">
-        <h2>Selected products</h2>
-        <button id="clearBtn" class="link-btn" type="button" hidden>Clear all</button>
-      </div>
-      <div id="chips" class="chips"></div>
     </section>
 
     <section class="panel">
