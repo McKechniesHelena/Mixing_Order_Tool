@@ -59,8 +59,10 @@ main {
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 .panel-head h2 { margin: 0; }
+.copy-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .copy-btn {
   border: 1.5px solid var(--green);

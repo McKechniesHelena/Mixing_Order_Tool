@@ -48,6 +48,7 @@ const chips = $('chips');
 const adjBar = $('adjuvants');
 const output = $('output');
 const copyBtn = $('copyBtn');
+const simpleCopyBtn = $('simpleCopyBtn');
 const clearBtn = $('clearBtn');
 
 /* ---- Build adjuvant quick-add buttons ---- */
@@ -122,8 +123,9 @@ function esc(s) {
 function render() {
   renderChips();
   renderOrder();
-  const ordered = orderedItems();
-  copyBtn.hidden = ordered.length === 0;
+  const empty = orderedItems().length === 0;
+  copyBtn.hidden = empty;
+  simpleCopyBtn.hidden = empty;
   clearBtn.hidden = selected.length === 0;
 }
 
@@ -157,6 +159,15 @@ function orderToText() {
   return lines.join('\n');
 }
 
+/* Just the numbered add-order, products only — water first, no notes/warnings. */
+function simpleToText() {
+  const ordered = orderedItems();
+  if (!ordered.length) return '';
+  const lines = ['1. Water'];
+  ordered.forEach((item, i) => lines.push(`${i + 2}. ${item.name}`));
+  return lines.join('\n');
+}
+
 async function copyText(text) {
   if (navigator.clipboard && window.isSecureContext) {
     try {
@@ -175,21 +186,25 @@ async function copyText(text) {
   if (!ok) throw new Error('copy command failed');
 }
 
-copyBtn.addEventListener('click', async () => {
-  const text = orderToText();
-  if (!text) return;
-  try {
-    await copyText(text);
-    copyBtn.textContent = 'Copied ✓';
-    copyBtn.classList.add('done');
-  } catch {
-    copyBtn.textContent = 'Copy failed';
-  }
-  setTimeout(() => {
-    copyBtn.textContent = 'Copy order';
-    copyBtn.classList.remove('done');
-  }, 1600);
-});
+function wireCopy(btn, label, textFn) {
+  btn.addEventListener('click', async () => {
+    const text = textFn();
+    if (!text) return;
+    try {
+      await copyText(text);
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('done');
+    } catch {
+      btn.textContent = 'Copy failed';
+    }
+    setTimeout(() => {
+      btn.textContent = label;
+      btn.classList.remove('done');
+    }, 1600);
+  });
+}
+wireCopy(copyBtn, 'Copy order', orderToText);
+wireCopy(simpleCopyBtn, 'Simple copy', simpleToText);
 
 clearBtn.addEventListener('click', () => {
   selected.length = 0;
