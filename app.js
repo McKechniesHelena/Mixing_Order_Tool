@@ -95,10 +95,12 @@ const SCHEMES = {
         default: return null;
       }
     },
-    // within a stage: defoamer last among water conditioners; Justified last among drift agents
+    // within a stage, force certain items to be added last of their group:
+    //   defoamer (water conditioners) · Justified (drift agents) · Roundup PowerMax 3 (soluble liquids)
     secondary: (item) => {
       if (/Defoam|AF/i.test(item.code || '')) return 1;
       if (/^justified$/i.test(item.name || '')) return 1;
+      if (/^roundup powermax 3$/i.test(item.name || '')) return 1;
       return 0;
     },
     label: (ph) => HELENA_LABELS[ph],
