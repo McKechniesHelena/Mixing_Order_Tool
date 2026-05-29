@@ -105,7 +105,7 @@ HELENA_ADJUVANTS = [
         'Contains ammoniacal nitrogen — avoid with dicamba formulations.', True),
     ('Smoke', 1, 'WC', 'water conditioner + herbicide activator (oil-free)', '', False),
     ('Clasp', 5, 'DRA', 'drift reduction agent (ready-to-use)', 'Add last.', False),
-    ('Justified', 5, 'DRA', 'drift reduction agent', 'Add last.', False),
+    ('Justified', 5, 'DRA', 'drift reduction agent', '', False),
     ('PointBlank WM', 5, 'DRA', 'drift reduction + deposition agent', 'Add last.', False),
 ]
 

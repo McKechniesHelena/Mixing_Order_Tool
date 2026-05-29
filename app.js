@@ -95,8 +95,12 @@ const SCHEMES = {
         default: return null;
       }
     },
-    // within the water-conditioner stage, the defoamer is added last
-    secondary: (item) => (/Defoam|AF/i.test(item.code || '') ? 1 : 0),
+    // within a stage: defoamer last among water conditioners; Justified last among drift agents
+    secondary: (item) => {
+      if (/Defoam|AF/i.test(item.code || '')) return 1;
+      if (/^justified$/i.test(item.name || '')) return 1;
+      return 0;
+    },
     label: (ph) => HELENA_LABELS[ph],
     refTitle: 'Helena (NBU p.95) order',
     refPhases: [2, 4, 5, 6, 7, 8, 11, 12, 13],
