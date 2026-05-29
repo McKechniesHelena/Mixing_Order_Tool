@@ -625,7 +625,9 @@ function renderOrder() {
   const foot = document.createElement('p');
   foot.className = 'foot';
   foot.innerHTML = `If a product label specifies its own mixing sequence, <b>follow the label</b> —
-    it overrides this guide. For unfamiliar combinations, do a <b>jar test</b> first.`;
+    it overrides this guide. For unfamiliar combinations, do a <b>jar test</b> first.
+    This tool is a guide only and may contain errors in product formulations or ordering —
+    <b>always verify against the current product label before mixing</b>.`;
   frag.appendChild(foot);
 
   output.appendChild(frag);
