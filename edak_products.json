@@ -1,0 +1,1857 @@
+[
+ {
+  "name": "Aatrex 4L",
+  "code": "L",
+  "ai": "Atrazine",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Aatrex Nine-0",
+  "code": "WDG",
+  "ai": "Atrazine",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Absolute Maxx",
+  "code": "SC",
+  "ai": "Tebuconazole + Trifloxystrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Abundit Edge",
+  "code": "SL",
+  "ai": "Glyphosate",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Accent Q",
+  "code": "WDG",
+  "ai": "Nicosulfuron + Isoxadifen-Ethyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Actara",
+  "code": "WG",
+  "ai": "Thiamethoxam",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Acuron",
+  "code": "SE",
+  "ai": "S-Metolachlor + Atrazine + Mesotrione + Bicyclopyrone",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Acuron Flexi",
+  "code": "SE",
+  "ai": "S-Metolachlor + Atrazine + Mesotrione + Bicyclopyrone",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Acuron GT",
+  "code": "SE",
+  "ai": "bicyclopyrone + glyphosate + mesotrione + s-metolachlor",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Adastrio",
+  "code": "SC",
+  "ai": "flutriafol + azoxystrobin + fluindapyr",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Admire Pro",
+  "code": "SC",
+  "ai": "Imidacloprid",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Affinity BroadSpec",
+  "code": "SG",
+  "ai": "Thifensulfuron-Methyl + Tribenuron-Methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Affinity Tank Mix",
+  "code": "SG",
+  "ai": "Thifensulfuron-Methyl + Tribenuron-Methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Afforia",
+  "code": "WDG",
+  "ai": "Thifensulfuron-Methyl + Tribenuron-Methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Agri-Mek SC",
+  "code": "SC",
+  "ai": "Abamectin",
+  "class": "insecticide/miticide",
+  "review": false
+ },
+ {
+  "name": "Aim EC",
+  "code": "EC",
+  "ai": "Carfentrazone-Ethyl",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Aliette 80% WDG",
+  "code": "WDG",
+  "ai": "Aluminum Tris",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Ally 60 XP",
+  "code": "XP",
+  "ai": "metsulfuron-methyl",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Ally Extra SG w/TotalSol",
+  "code": "SG",
+  "ai": "thifensulfuron-methyl + tribenuron-methyl + metsulfuron-methyl",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Altacor",
+  "code": "WDG",
+  "ai": "chlorantraniliprole",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Alto 100 SL",
+  "code": "SL",
+  "ai": "cyproconazole",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Antares Herbicide",
+  "code": "SC",
+  "ai": "sulfentrazone",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Anthem Flex",
+  "code": "EC",
+  "ai": "pyroxasulfone + carfentrazone",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Anthem Maxx",
+  "code": "SE",
+  "ai": "pyroxasulfone + fluthiacet-methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Apogee",
+  "code": "WDG",
+  "ai": "prohexadione calcium",
+  "class": "plant growth regulator",
+  "review": true
+ },
+ {
+  "name": "Aproach",
+  "code": "SC",
+  "ai": "picoxystrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Aproach Prima",
+  "code": "SC",
+  "ai": "picoxystrobin + cyproconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Armezon",
+  "code": "SC",
+  "ai": "topramezone",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Armezon Pro",
+  "code": "EC",
+  "ai": "dimethenamid-p + topramezone",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Asana XL",
+  "code": "EC",
+  "ai": "esfenvalerate",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Assure II",
+  "code": "EC",
+  "ai": "quizalofop p-ethyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Authority Assist",
+  "code": "SC",
+  "ai": "sulfentrazone + imazethapyr",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Authority Edge",
+  "code": "SC",
+  "ai": "pyroxasulfone + sulfentrazone",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Authority First DF",
+  "code": "DF",
+  "ai": "sulfentrazone + cloransulam-methyl",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Authority MTZ",
+  "code": "SC",
+  "ai": "metribuzin + sulfentrazone",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Authority Supreme",
+  "code": "SC",
+  "ai": "pyroxasulfone + sulfentrazone",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Authority XL",
+  "code": "WDG",
+  "ai": "sulfentrazone + chlorimuron-ethyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Autumn Super 51 WDG",
+  "code": "WDG",
+  "ai": "thiencarbazone-methyl + iodosulfuron-methyl-sodium",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Avadex",
+  "code": "EC",
+  "ai": "Triallate",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Avaunt",
+  "code": "WDG",
+  "ai": "indoxacarb",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Axial Bold",
+  "code": "EC",
+  "ai": "fluroxypyr + pinoxaden",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Axial Star",
+  "code": "EC",
+  "ai": "fluroxypyr + pinoxaden",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Axial XL",
+  "code": "EC",
+  "ai": "pinoxaden",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Axiom 68 DF",
+  "code": "DF",
+  "ai": "thiencarbazone-methyl + iodosulfuron-methyl-sodium",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Aztec 4.67G Bag",
+  "code": "G",
+  "ai": "cyfluthrin + tebupirimphos",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Aztec 4.67G SB",
+  "code": "G",
+  "ai": "cyfluthrin + tebupirimphos",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Aztec HC 9.34G SB",
+  "code": "G",
+  "ai": "cyfluthrin + tebupirimphos",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Azterknot",
+  "code": "SC",
+  "ai": "Azoxystrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "AZteroid FC 3.3",
+  "code": "SC",
+  "ai": "azoxystrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Badge SC",
+  "code": "SC",
+  "ai": "EPTC",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Balance Flexx",
+  "code": "SC",
+  "ai": "isoxaflutole",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Basagran 5L",
+  "code": "L",
+  "ai": "bentazon",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Basis Blend",
+  "code": "SG",
+  "ai": "rimsulfuron + thifensulfuron-methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Baythroid XL",
+  "code": "EC",
+  "ai": "cyfluthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Belay Insecticide",
+  "code": "SC",
+  "ai": "clothianidin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Beleaf 50",
+  "code": "SG",
+  "ai": "flonicamid",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Besiege",
+  "code": "ZC",
+  "ai": "lambda-cyhalothrin + chlorantraniliprole",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Beyond Xtra",
+  "code": "SL",
+  "ai": "imazamox",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Bicep II Magnum",
+  "code": "SC",
+  "ai": "s-metolachlor + atrazine",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Bicep II Magnum FC",
+  "code": "SC",
+  "ai": "s-metolachlor + atrazine",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Bicep Lite II Magnum",
+  "code": "SC",
+  "ai": "s-metolachlor + atrazine",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Bifender FC",
+  "code": "SC",
+  "ai": "bifenthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Blackhawk",
+  "code": "WG",
+  "ai": "spinosad",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Boundary 6.5EC",
+  "code": "EC",
+  "ai": "s-metolachlor + metribuzin",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Brigade 2EC",
+  "code": "EC",
+  "ai": "bifenthrin",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Brigade EVO",
+  "code": "WDG",
+  "ai": "bifenthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Brigade WSB",
+  "code": "WP",
+  "ai": "bifenthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Cabrio EG",
+  "code": "WG",
+  "ai": "pyraclostrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Callisto 4SC",
+  "code": "SC",
+  "ai": "mesotrione",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Callisto Xtra (Enhanced)",
+  "code": "SC",
+  "ai": "mesotrione + atrazine",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Capture 3RIVE 3D",
+  "code": "SC",
+  "ai": "bifenthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Capture LFR",
+  "code": "SC",
+  "ai": "bifenthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Caramba",
+  "code": "EC",
+  "ai": "metconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Carbine",
+  "code": "WG",
+  "ai": "flonicamid",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Classic",
+  "code": "DF",
+  "ai": "chlorimuron-ethyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Command 3ME",
+  "code": "ME",
+  "ai": "clomazone",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Coragen",
+  "code": "SC",
+  "ai": "thifensulfuron-methyl + tribenuron-methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Counter 20G LNL",
+  "code": "G",
+  "ai": "terbufos",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Counter 20G SB",
+  "code": "G",
+  "ai": "terbufos",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Cruiser 5FS",
+  "code": "SC",
+  "ai": "thiamethoxam",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Curzate 60 DF",
+  "code": "DF",
+  "ai": "cymoxanil",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Defcon 4.67G (Bags)",
+  "code": "G",
+  "ai": "tebupirimphos + cyfluthrin",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Defcon 4.67G SB",
+  "code": "G",
+  "ai": "tebupirimphos + cyfluthrin",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Degree Xtra",
+  "code": "L",
+  "ai": "acetochlor + atrazine",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Delaro 325 SC",
+  "code": "SC",
+  "ai": "prothioconazole + trifloxystrobin",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Delaro Complete",
+  "code": "SC",
+  "ai": "prothioconazole + trifloxystrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Delegate WG",
+  "code": "WG",
+  "ai": "spinetoram",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Dibrom 8E",
+  "code": "EC",
+  "ai": "naled",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Dimethoate 4E Insecticide",
+  "code": "EC",
+  "ai": "dimethoate",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Dual  Magnum",
+  "code": "EC",
+  "ai": "s-metolachlor",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Dual II  Magnum",
+  "code": "EC",
+  "ai": "s-metolachlor",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Elatus",
+  "code": "WG",
+  "ai": "lambda-cyhalothrin + thiamethoxam",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Elevest Insect Control",
+  "code": "SC",
+  "ai": "chlorantraniliprole + Bifenthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Enable",
+  "code": "F",
+  "ai": "Fenbuconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Endigo ZC",
+  "code": "ZC",
+  "ai": "lambda-cyhalothrin + thiamethoxam",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Endigo ZCX",
+  "code": "ZC",
+  "ai": "lambda-cyhalothrin + thiamethoxam",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Endura",
+  "code": "WG",
+  "ai": "boscalid",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Endura Pro",
+  "code": "WG",
+  "ai": "boscalid",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Engenia",
+  "code": "SL",
+  "ai": "dicamba",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Enlite",
+  "code": "WDG",
+  "ai": "flumioxazin + chlorimuron-ethyl + thifensulfuron-methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Enversa",
+  "code": "ME",
+  "ai": "acetochlor",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Envive",
+  "code": "WDG",
+  "ai": "flumioxazin + chlorimuron-ethyl + thifensulfuron-methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Ethos 3D",
+  "code": "SC",
+  "ai": "bifenthrin + bacillus",
+  "class": "insecticide/fungicide",
+  "review": true
+ },
+ {
+  "name": "Ethos Elite",
+  "code": "SC",
+  "ai": "bifenthrin + bacillus",
+  "class": "insecticide/fungicide",
+  "review": true
+ },
+ {
+  "name": "Ethos XB",
+  "code": "SC",
+  "ai": "bifenthrin + bacillus",
+  "class": "insecticide/fungicide",
+  "review": true
+ },
+ {
+  "name": "Excalia",
+  "code": "SC",
+  "ai": "Inpyrfluxam",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Express w/TotalSol",
+  "code": "SG",
+  "ai": "tribenuron-methyl",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Facet L",
+  "code": "L",
+  "ai": "quinclorac",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Far-Go",
+  "code": "EC",
+  "ai": "Triallate",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Fastac CS",
+  "code": "CS",
+  "ai": "alpha-cypermethrin",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Fierce XLT",
+  "code": "WDG",
+  "ai": "pyroxasulfone + flumioxazin + chlorimuron-methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Finesse Cereal & Fallow",
+  "code": "DF",
+  "ai": "chlorsulfuron + metsulfuron-methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Fontelis",
+  "code": "SC",
+  "ai": "penthiopyrad",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Force 10G HL SB",
+  "code": "G",
+  "ai": "tefluthrin",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Force 6.5G",
+  "code": "G",
+  "ai": "tefluthrin",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Force EVO",
+  "code": "EC",
+  "ai": "tefluthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Forcivo",
+  "code": "SC",
+  "ai": "flutriafol + azoxystrobin + fluindapyr",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Forum",
+  "code": "SC",
+  "ai": "dimethomorph",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Freelexx",
+  "code": "SL",
+  "ai": "2,4-D",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Gaucho 600 FS",
+  "code": "SC",
+  "ai": "imidacloprid",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Gramoxone SL 2.0",
+  "code": "SL",
+  "ai": "paraquat",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Harmony Extra SG w/TotalSol",
+  "code": "SG",
+  "ai": "thifensulfuron-methyl + tribenuron-methyl",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Harness  MAX",
+  "code": "SC",
+  "ai": "acetochlor + mesotrione",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Harness  Xtra",
+  "code": "L",
+  "ai": "acetochlor + atrazine",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Harness  Xtra 5.6L",
+  "code": "L",
+  "ai": "acetochlor + atrazine",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Headline AMP",
+  "code": "SC",
+  "ai": "pyraclostrobin + metconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Headline SC",
+  "code": "SC",
+  "ai": "pyraclostrobin",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Hero",
+  "code": "EC",
+  "ai": "bifenthrin + zeta-cypermethrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Hornet WDG",
+  "code": "WDG",
+  "ai": "flumetsulam + clopyralid",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Impact 2.8 SC",
+  "code": "SC",
+  "ai": "topramezone",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "ImpactCore",
+  "code": "SC",
+  "ai": "Acetochlor + Topramezone",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Index",
+  "code": "EC",
+  "ai": "Bifenthrin + Chlorethoxfos",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Inspire Super",
+  "code": "EC",
+  "ai": "cyprodinil + difenoconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Inspire XT",
+  "code": "EC",
+  "ai": "difenoconazole + propiconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Keystone NXT",
+  "code": "L",
+  "ai": "acetochlor + atrazine",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Kickstand PGR",
+  "code": "SL",
+  "ai": "indole-3-butyric acid",
+  "class": "plant growth regulator",
+  "review": true
+ },
+ {
+  "name": "Leverage 360",
+  "code": "SC",
+  "ai": "imidacloprid + beta-cyfluthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Lexar EZ",
+  "code": "SE",
+  "ai": "s-metolachlor + atrazine + mesotrione",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Liberty 280SL",
+  "code": "SL",
+  "ai": "glufosinate-ammonium",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Lucento",
+  "code": "SC",
+  "ai": "bixafen + flutriafol",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Luna Experience",
+  "code": "SC",
+  "ai": "fluopyram + tebuconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Luna Sensation",
+  "code": "SC",
+  "ai": "fluopyram + trifloxystrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Luna Tranquility",
+  "code": "SC",
+  "ai": "fluopyram + pyrimethanil",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Matrix SG",
+  "code": "SG",
+  "ai": "rimsulfuron",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "MaxCel",
+  "code": "SL",
+  "ai": "6-benzyladenine",
+  "class": "plant growth regulator",
+  "review": true
+ },
+ {
+  "name": "Merivon",
+  "code": "SC",
+  "ai": "fluxapyroxad + pyraclostrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Midac 4",
+  "code": "SC",
+  "ai": "imidacloprid",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Milestone",
+  "code": "SL",
+  "ai": "aminopyralid",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Minecto Pro",
+  "code": "SC",
+  "ai": "cyantraniliprole + abamectin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Miravis Ace",
+  "code": "SE",
+  "ai": "pydiflumetofen + propiconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Miravis Neo",
+  "code": "SE",
+  "ai": "propiconazole + azoxystrobin + pydiflumetofen",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Miravis Prime",
+  "code": "SC",
+  "ai": "fludioxonil + pydiflumetofen",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Miravis Top",
+  "code": "SC",
+  "ai": "difenoconazole + pydiflumetofen",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Mocap 15G",
+  "code": "G",
+  "ai": "ethoprop",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Mocap 15G LNL",
+  "code": "G",
+  "ai": "ethoprop",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Mocap 6EC",
+  "code": "EC",
+  "ai": "ethoprop",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Movento",
+  "code": "SC",
+  "ai": "spirotetramat",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Movento HL",
+  "code": "SC",
+  "ai": "spirotetramat",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Mustang Maxx",
+  "code": "EC",
+  "ai": "zeta-cypermethrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Nexicor",
+  "code": "EC",
+  "ai": "fluxapyroxad + pyraclostrobin + propiconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Nurizma",
+  "code": "SC",
+  "ai": "broflanilide",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Nuviga",
+  "code": "SC",
+  "ai": "Natamycin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Obvius",
+  "code": "WDG",
+  "ai": "propoxycarbazone-sodium",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Obvius Plus",
+  "code": "WDG",
+  "ai": "propoxycarbazone-sodium",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Olympus 70 WDG",
+  "code": "WDG",
+  "ai": "propoxycarbazone-sodium",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Omega 500F",
+  "code": "F",
+  "ai": "fluazinam",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Opello",
+  "code": "SC",
+  "ai": "ISOCYCLOSERAM",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Palisade EC",
+  "code": "EC",
+  "ai": "trinexapac-ethyl",
+  "class": "plant growth regulator",
+  "review": false
+ },
+ {
+  "name": "Palisade Maxx",
+  "code": "EC",
+  "ai": "trinexapac-ethyl",
+  "class": "plant growth regulator",
+  "review": true
+ },
+ {
+  "name": "Panoflex w/TotalSol",
+  "code": "SG",
+  "ai": "tribenuron-methyl + thifensulfuron-methyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "PastureGard HL",
+  "code": "EC",
+  "ai": "triclopyr + fluroxypyr",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Platinum 75 SG",
+  "code": "SG",
+  "ai": "thiamethoxam",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "PoMaxa PGR",
+  "code": "SL",
+  "ai": "1-naphthaleneacetic acid",
+  "class": "plant growth regulator",
+  "review": true
+ },
+ {
+  "name": "Pounce 25WP",
+  "code": "WP",
+  "ai": "permethrin",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Pramitol 25E",
+  "code": "PS",
+  "ai": "prometon",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Pramitol 5PS",
+  "code": "PS",
+  "ai": "prometon + sodium chlorate + sodium metaborate",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Prefar 4E",
+  "code": "EC",
+  "ai": "bensulide",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Preside Ultra Soybean",
+  "code": "SC",
+  "ai": "fluopicolide",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Presidio",
+  "code": "SC",
+  "ai": "fluopicolide",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Priaxor Xemium",
+  "code": "SC",
+  "ai": "fluxapyroxad + pyraclostrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Primo GX2 Soybean (40 lb Bag)",
+  "code": "L",
+  "ai": "simazine",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Primo GX2 Soybean (520 lb Tote)",
+  "code": "L",
+  "ai": "simazine",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Primo R1 Soybean",
+  "code": "L",
+  "ai": "simazine",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Pristine",
+  "code": "WG",
+  "ai": "pyraclostrobin + boscalid",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Proline 480 SC",
+  "code": "SC",
+  "ai": "prothioconazole",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Propulse",
+  "code": "SC",
+  "ai": "prothioconazole + tebuconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Prosaro 421 SC",
+  "code": "SC",
+  "ai": "prothioconazole + tebuconazole",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Prosaro Pro",
+  "code": "SC",
+  "ai": "prothioconazole + tebuconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Prowl 3.3 EC",
+  "code": "EC",
+  "ai": "pendimethalin",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Prowl H20",
+  "code": "ACS",
+  "ai": "pendimethalin",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Python WDG",
+  "code": "WDG",
+  "ai": "flumetsulam",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Quadris Flowable",
+  "code": "SC",
+  "ai": "azoxystrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Quadris Opti",
+  "code": "SC",
+  "ai": "azoxystrobin + chlorothalonil",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Quadris Ridomil Gold SL Twinpack",
+  "code": "SL",
+  "ai": "azoxystrobin + chlorothalonil",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Quadris Top",
+  "code": "SC",
+  "ai": "azoxystrobin + difenoconazole",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Quadris Top SBX",
+  "code": "SC",
+  "ai": "azoxystrobin + difenoconazole",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Quilt Xcel",
+  "code": "SE",
+  "ai": "azoxystrobin + propiconazole",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Quintec",
+  "code": "SC",
+  "ai": "quinoxyfen",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Radiant SC",
+  "code": "SC",
+  "ai": "spinetoram",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Rally 40 WSP",
+  "code": "WSP",
+  "ai": "myclobutanil",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Raptor",
+  "code": "SL",
+  "ai": "imazamox",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Rave",
+  "code": "WDG",
+  "ai": "dicamba + triasulfuron",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Receptor",
+  "code": "SL",
+  "ai": "gibberellic acid + kinetin + butyric acid",
+  "class": "plant growth regulator",
+  "review": true
+ },
+ {
+  "name": "Regent 4SC",
+  "code": "SC",
+  "ai": "fipronil",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Renestra",
+  "code": "SC",
+  "ai": "Cypermethrin-Afidopyropen",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Resicore REV",
+  "code": "SE",
+  "ai": "acetochlor + mesotrione + clopyralid",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Retain",
+  "code": "SP",
+  "ai": "aminoethoxyvinylglycine",
+  "class": "plant growth regulator",
+  "review": true
+ },
+ {
+  "name": "Revus",
+  "code": "SC",
+  "ai": "mandipropamid",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Revus Top",
+  "code": "SC",
+  "ai": "mandipropamid + difenoconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Revytek",
+  "code": "SC",
+  "ai": "mefentrifluconazole + pyraclostrobin + fluxapyroxad",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Ridgeback",
+  "code": "SC",
+  "ai": "Sulfoxaflor + Bifenthrin",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Ridomil Gold Bravo SC",
+  "code": "SC",
+  "ai": "mefenoxam + chlorothalonil",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Ridomil Gold SL",
+  "code": "SL",
+  "ai": "mefenoxam",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Roundup QuikPro",
+  "code": "SG",
+  "ai": "glyphosate + diquat",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Rovral 4F",
+  "code": "F",
+  "ai": "iprodione",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "RT3",
+  "code": "SL",
+  "ai": "glyphosate",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Ruckus LFR",
+  "code": "SC",
+  "ai": "bifenthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Scala SC",
+  "code": "SC",
+  "ai": "pyrimethanil",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Scepter 70 DG",
+  "code": "DG",
+  "ai": "imazaquin",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Sefina Inscalis",
+  "code": "SC",
+  "ai": "afidopyropen",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Sentris",
+  "code": "SC",
+  "ai": "",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Sinister Intent",
+  "code": "DC",
+  "ai": "fomesafen",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Sivanto Prime",
+  "code": "SL",
+  "ai": "Flupyradifurone",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "SmartChoice HC SB",
+  "code": "SC",
+  "ai": "chlorethoxyfos + bifenthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Spartan 4F",
+  "code": "F",
+  "ai": "sulfentrazone + carfentrazone-ethyl",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Sphaerex",
+  "code": "EC",
+  "ai": "prothioconazole + Metconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Spike 20P",
+  "code": "DF",
+  "ai": "tebuthiuron",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "StareDown",
+  "code": "EC",
+  "ai": "fluroxypyr",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Steadfast Q",
+  "code": "WDG",
+  "ai": "nicosulfuron + rimsulfuron",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Steward EC",
+  "code": "EC",
+  "ai": "indoxacarb",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Stratego YLD",
+  "code": "EC",
+  "ai": "prothioconazole + trifloxystrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Stryax",
+  "code": "SE",
+  "ai": "acetochlor + flumetsulam + clopyralid",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Sultrus",
+  "code": "EC",
+  "ai": "beta-cyfluthrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Surmount",
+  "code": "EC",
+  "ai": "picloram + fluroxypyr",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Switch 62.5 WG",
+  "code": "WG",
+  "ai": "cyprodinil + fludioxonil",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Synchrony XP",
+  "code": "XP",
+  "ai": "chlorimuron-ethyl + thifensulfuron-methyl",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Tavium",
+  "code": "SE",
+  "ai": "dicamba + s-metolachlor",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "TeamMate",
+  "code": "WDG",
+  "ai": "pyroxsulam",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Tempest",
+  "code": "EC",
+  "ai": "bifenthrin + imidacloprid",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Tempo SC Ultra",
+  "code": "SC",
+  "ai": "beta-cyfluthrin",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Thimet 20G LNL",
+  "code": "G",
+  "ai": "phorate",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Thimet 20G SB",
+  "code": "G",
+  "ai": "phorate",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Tilt 3.6 EC",
+  "code": "EC",
+  "ai": "propiconazole",
+  "class": "fungicide",
+  "review": false
+ },
+ {
+  "name": "Topguard EQ",
+  "code": "SC",
+  "ai": "azoxystrobin + flutriafol",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Topguard Fungicide (Row Crops)",
+  "code": "SC",
+  "ai": "flutriafol",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Tordon RTU",
+  "code": "SL",
+  "ai": "picloram + 2,4-D",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Torino",
+  "code": "SC",
+  "ai": "cyflufenamid",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Transform WG",
+  "code": "WG",
+  "ai": "Sulfoxaflor",
+  "class": "insecticide",
+  "review": false
+ },
+ {
+  "name": "Trimec 992",
+  "code": "SL",
+  "ai": "2,4-D + dicamba + mcpp-p",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Trivapro",
+  "code": "SE",
+  "ai": "azoxystrobin + benzovindiflupyr + propiconazole",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Trivence",
+  "code": "WDG",
+  "ai": "chlorimuron-ethyl + flumioxazin + metribuzin",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "TrumpCard",
+  "code": "DC",
+  "ai": "fluroxypyr + 2,4-D",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Unison (ultra low vol 2,4-D)",
+  "code": "EC",
+  "ai": "2,4-D",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Valor XLT",
+  "code": "WDG",
+  "ai": "flumioxazin + chlorimuron-ethyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Vantacor",
+  "code": "SC",
+  "ai": "Chlorantraniliprole",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Veltyma",
+  "code": "SC",
+  "ai": "mefentrifluconazole + pyraclostrobin",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Velum Prime",
+  "code": "SC",
+  "ai": "fluopyram",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Vermeso",
+  "code": "WDG",
+  "ai": "Pyroxasulfone",
+  "class": "herbicide",
+  "review": false
+ },
+ {
+  "name": "Vivando",
+  "code": "SC",
+  "ai": "metrafenone",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Warrior II W/Zeon Tech",
+  "code": "CS",
+  "ai": "lambda-cyhalothrin",
+  "class": "insecticide",
+  "review": true
+ },
+ {
+  "name": "Wide Match",
+  "code": "EC",
+  "ai": "clopyralid + fluroxypyr",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Wolverine Advanced",
+  "code": "EC",
+  "ai": "bromoxynil + pyrasulfotole + fenoxaprop-p-ethyl",
+  "class": "herbicide",
+  "review": true
+ },
+ {
+  "name": "Xentari",
+  "code": "DF",
+  "ai": "bacillus thuringiensis",
+  "class": "biological insecticide",
+  "review": true
+ },
+ {
+  "name": "Zampro",
+  "code": "SC",
+  "ai": "ametoctradin + dimethomorph",
+  "class": "fungicide",
+  "review": true
+ },
+ {
+  "name": "Zorina",
+  "code": "SC",
+  "ai": "ametoctradin + dimethomorph",
+  "class": "fungicide",
+  "review": true
+ }
+]

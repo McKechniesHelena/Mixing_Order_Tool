@@ -9,6 +9,17 @@ compendium_raw.txt
 helena_moa_raw.txt
 helena_adj_raw.txt
 
+# EDak price sheet — CONTAINS INTERNAL COST/MARGIN DATA. Never commit the
+# source workbook or any derived intermediate files.
+*.xlsx
+edak_raw.txt
+edak_new.tsv
+edak_new_names.txt
+edak_unmatched.txt
+edak_xlsx.json
+edak_review.txt
+edak_review.csv
+
 # OS / editor cruft
 Thumbs.db
 .DS_Store

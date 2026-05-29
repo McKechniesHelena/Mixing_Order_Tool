@@ -109,6 +109,30 @@ HELENA_ADJUVANTS = [
     ('PointBlank WM', 5, 'DRA', 'drift reduction + deposition agent', 'Add last.', False),
 ]
 
+# --- Generic / third-party adjuvants from the EDak product list. Placement by
+# function, same rule as HELENA_ADJUVANTS.
+# (name, group, short-code, type description, note, ammonium?)
+EDAK_ADJUVANTS = [
+    ('Accuquest WM', 1, 'WC', 'water conditioner + deposition aid (AMS replacement)',
+        'Non-AMS; also aids deposition.', False),
+    ('Ad-Spray 80', 5, 'NIS', 'nonionic surfactant (NIS)', '', False),
+    ('Ad-Spray 90 NIS', 5, 'NIS', 'nonionic surfactant (NIS)', '', False),
+    ('Blendex VHC', 1, 'COMP', 'compatibility / stabilizing agent',
+        'Add early to keep tank-mix partners compatible.', False),
+    ('Cohere', 5, 'NIS', 'nonionic spreader-sticker surfactant', '', False),
+    ('Crop Oil Concentrate', 4, 'COC', 'crop oil concentrate (COC)', '', False),
+    ('Kinetic', 5, 'NIS', 'nonionic surfactant + organosilicone penetrant', '', False),
+    ('Liquid Chisel', 4, 'MSO', 'methylated seed oil (MSO)', '', False),
+    ('Optima', 5, 'NIS', 'nonionic surfactant', '', False),
+    ('Premium MSO', 4, 'MSO', 'methylated seed oil (MSO)', '', False),
+    ('Re-Duce', 1, 'WC', 'water conditioner / AMS replacement + surfactant',
+        'Contains ammonium sulfate — avoid with dicamba formulations.', True),
+    ('Transactive HC', 1, 'WC', 'AMS-replacement water conditioner',
+        'Contains ammonium salts — avoid with dicamba formulations.', True),
+    ('Trico Pro', 1, 'WC', 'AMS-replacement water conditioner',
+        'Contains ammonium salts — avoid with dicamba formulations.', True),
+]
+
 
 def main():
     ndsu = json.load(open('products.json', encoding='utf-8'))
@@ -139,18 +163,42 @@ def main():
         added += 1
 
     adj = 0
-    for name, grp, code, typ, note, ammonium in HELENA_ADJUVANTS:
-        if name.lower() in by_name:
+    for src, adjlist in (('Helena', HELENA_ADJUVANTS), ('EDak', EDAK_ADJUVANTS)):
+        for name, grp, code, typ, note, ammonium in adjlist:
+            if name.lower() in by_name:
+                continue
+            item = {'name': name, 'code': code, 'group': grp,
+                    'groupLabel': GROUP_LABEL[grp], 'ai': typ,
+                    'adjuvant': True, 'source': src}
+            if note:
+                item['note'] = note
+            if ammonium:
+                item['ammonium'] = True
+            by_name[name.lower()] = item
+            out.append(item)
+            adj += 1
+
+    # --- EDak generic/branded pesticides (curated in edak_products.json) ---
+    edak_added = edak_review = 0
+    try:
+        edak = json.load(open('edak_products.json', encoding='utf-8'))
+    except FileNotFoundError:
+        edak = []
+    for p in edak:
+        key = p['name'].lower()
+        if key in by_name:
             continue
-        item = {'name': name, 'code': code, 'group': grp,
-                'groupLabel': GROUP_LABEL[grp], 'ai': typ,
-                'adjuvant': True, 'source': 'Helena'}
-        if note:
-            item['note'] = note
-        if ammonium:
-            item['ammonium'] = True
+        code = p.get('code')
+        grp = CODE_GROUP.get(code) if code else None
+        item = {'name': p['name'], 'code': code, 'group': grp,
+                'groupLabel': GROUP_LABEL.get(grp, 'Unknown — check product label'),
+                'ai': p.get('ai', ''), 'adjuvant': False, 'source': 'EDak'}
+        if p.get('review'):
+            item['review'] = True
+            edak_review += 1
+        by_name[key] = item
         out.append(item)
-        adj += 1
+        edak_added += 1
 
     out.sort(key=lambda p: p['name'].lower())
     with open('data.js', 'w', encoding='utf-8') as f:
@@ -163,7 +211,8 @@ def main():
 
     print(f'NDSU products: {len(ndsu)}')
     print(f'Helena products added: {added}, filled NDSU gaps: {filled}')
-    print(f'Helena adjuvants added: {adj}')
+    print(f'Adjuvants added (Helena + EDak): {adj}')
+    print(f'EDak products added: {edak_added} (review-flagged: {edak_review})')
     print(f'TOTAL entries in data.js: {len(out)}')
 
 
