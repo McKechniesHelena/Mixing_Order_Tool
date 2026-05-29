@@ -141,6 +141,8 @@ MANUAL_PRODUCTS = [
     ('Regev', 'EC', 'difenoconazole & tea tree oil (Melaleuca alternifolia) (fungicide)', 'fungicide'),
     ('Medal EC', 'EC', 'metolachlor', 'herbicide'),
     ('Medal II EC', 'EC', 's-metolachlor', 'herbicide'),
+    ('Explorer', 'SC', 'mesotrione', 'herbicide'),
+    ('Atrazine 4F', 'F', 'atrazine', 'herbicide'),
 ]
 
 # --- Helena foliar nutritionals (NBU 2026 guide, Nutritionals section pp.31-42).
