@@ -104,9 +104,9 @@ HELENA_ADJUVANTS = [
     ('ReQuest', 1, 'WC', 'water conditioner with ammoniacal nitrogen',
         'Contains ammoniacal nitrogen — avoid with dicamba formulations.', True),
     ('Smoke', 1, 'WC', 'water conditioner + herbicide activator (oil-free)', '', False),
-    ('Clasp', 5, 'DRA', 'drift reduction agent (ready-to-use)', 'Add last.', False),
+    ('Clasp', 5, 'DRA', 'drift reduction agent (ready-to-use)', '', False),
     ('Justified', 5, 'DRA', 'drift reduction agent', '', False),
-    ('PointBlank WM', 5, 'DRA', 'drift reduction + deposition agent', 'Add last.', False),
+    ('PointBlank WM', 5, 'DRA', 'drift reduction + deposition agent', '', False),
 ]
 
 # --- Generic / third-party adjuvants from the EDak product list. Placement by
