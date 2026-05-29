@@ -8,6 +8,8 @@
 compendium_raw.txt
 helena_moa_raw.txt
 helena_adj_raw.txt
+helena_nutritional_raw.txt
+_toc_tmp.txt
 
 # EDak price sheet — CONTAINS INTERNAL COST/MARGIN DATA. Never commit the
 # source workbook or any derived intermediate files.

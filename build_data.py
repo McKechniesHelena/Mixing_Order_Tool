@@ -133,6 +133,74 @@ EDAK_ADJUVANTS = [
         'Contains ammonium salts — avoid with dicamba formulations.', True),
 ]
 
+# --- Manually-added products (not in the NDSU, Helena, or EDak sources).
+# Hand-entered; formulation confirmed with the user / off the label.
+# (name, formulation code, active ingredients, class)
+MANUAL_PRODUCTS = [
+    ('Shieldex', 'SC', 'tolpyralate', 'herbicide'),
+    ('Regev', 'EC', 'difenoconazole & tea tree oil (Melaleuca alternifolia) (fungicide)', 'fungicide'),
+]
+
+# --- Helena foliar nutritionals (NBU 2026 guide, Nutritionals section pp.31-42).
+# Coded by physical form: dry chelated soluble microgranules -> SG (group 1);
+# soluble/wettable powders -> SP/WP; liquid "FL" flowables -> F (group 3);
+# liquid "LC"/foliar solutions -> SL (group 5); soil granular -> G (not mixed).
+# (name, formulation code, description)
+NUTRITIONAL_PRODUCTS = [
+    # Axilo — dry EDTA-chelated soluble micronutrient microgranules (group 1)
+    ('Axilo Calcium', 'SG', '10% Ca, EDTA-chelated (foliar micronutrient)'),
+    ('Axilo Copper', 'SG', '15% Cu, EDTA-chelated (foliar micronutrient)'),
+    ('Axilo Magnesium', 'SG', '6% Mg, EDTA-chelated (foliar micronutrient)'),
+    ('Axilo Manganese', 'SG', '13% Mn, EDTA-chelated (foliar micronutrient)'),
+    ('Axilo Iron', 'SG', '13% Fe, EDTA-chelated (foliar micronutrient)'),
+    ('Axilo Zinc', 'SG', '15% Zn, EDTA-chelated (foliar micronutrient)'),
+    ('Axilo BMZ', 'SG', 'boron, molybdenum + chelated manganese & zinc (foliar micronutrient)'),
+    ('Axilo Mix 5', 'SG', 'multi-micronutrient blend B/Mn/Zn/Cu/Mo (foliar micronutrient)'),
+    ('Axilo RMX', 'SG', 'multi-micronutrient blend (foliar micronutrient)'),
+    # Brexil — dry LPCA-chelated soluble micronutrient microgranules (group 1)
+    ('Brexil Calcium', 'SG', '15% Ca + boron, LPCA-chelated (foliar micronutrient)'),
+    ('Brexil CBZ', 'SG', 'calcium, boron & zinc, LPCA-chelated (foliar micronutrient)'),
+    ('Brexil Magnesium', 'SG', '5% Mg, LPCA-chelated (foliar micronutrient)'),
+    ('Brexil Manganese', 'SG', '10% Mn, LPCA-chelated (foliar micronutrient)'),
+    ('Brexil Iron', 'SG', '10% Fe, LPCA-chelated (foliar micronutrient)'),
+    ('Brexil Zinc', 'SG', '10% Zn, LPCA-chelated (foliar micronutrient)'),
+    ('Brexil Combi', 'SG', 'multi-micronutrient blend, LPCA-chelated (foliar micronutrient)'),
+    ('Brexil Multi', 'SG', 'boron, magnesium, iron, manganese & zinc, LPCA-chelated (foliar micronutrient)'),
+    # Ele-Max — mixed forms (FL flowable g3 / LC liquid g5 / WP g2 / SP g1)
+    ('Ele-Max Boron LC', 'SL', '10.9% B liquid (foliar nutritional)'),
+    ('Ele-Max CalBor Zn FL', 'F', '15% Ca, 6% B, 3% Zn flowable (foliar nutritional)'),
+    ('Ele-Max Calcium FL', 'F', '23.8% Ca flowable (foliar nutritional)'),
+    ('Ele-Max Copper FL', 'F', '33% Cu flowable (foliar nutritional)'),
+    ('Ele-Max Magnesium FL', 'F', '20% Mg flowable (foliar nutritional)'),
+    ('Ele-Max Manganese FL', 'F', '27.4% Mn flowable (foliar nutritional)'),
+    ('Ele-Max ManZinc FL', 'F', '14% Mn, 19.5% Zn flowable (foliar nutritional)'),
+    ('Ele-Max Phos-K-Mag LC', 'SL', '29% P2O5, 5% K2O, 4.1% Mg liquid (foliar nutritional)'),
+    ('Ele-Max PhosCal-Zinc FL', 'F', 'phosphorus, 15% Ca, 13% Zn flowable (foliar nutritional)'),
+    ('Ele-Max PhoZ B Mag WP', 'WP', 'phosphorus, boron, magnesium & zinc wettable powder (foliar nutritional)'),
+    ('Ele-Max Sulfur Complete SP', 'SP', '14.5% S soluble powder + micronutrients (foliar nutritional)'),
+    ('Ele-Max Super Zinc FL', 'F', '40% Zn flowable (foliar nutritional)'),
+    ('Ele-Max BMZ', 'F', '1-0-0 liquid with boron, manganese & zinc (foliar nutritional)'),
+    ('Ele-Max Hi-Phos LC', 'SL', 'high-analysis orthophosphate + EDTA-chelated Cu/Fe/Mn/Zn (foliar nutritional)'),
+    ('Ele-Max Sulfur EZ', 'SL', '10-0-0 + 10% sulfur + boron, liquid (foliar nutritional)'),
+    # KickStand — EDTA micronutrient liquid solutions (group 5); DG/Greens-Grade are dry
+    ('KickStand Cu', 'SL', 'EDTA-chelated copper liquid (foliar micronutrient)'),
+    ('KickStand Zn 7', 'SL', '7% zinc EDTA liquid (foliar micronutrient)'),
+    ('KickStand MicroMix', 'SL', 'EDTA micronutrient mix, liquid (foliar micronutrient)'),
+    ('KickStand RTU', 'SL', 'ready-to-use EDTA micronutrient liquid (foliar micronutrient)'),
+    ('KickStand DG+Zn', 'WDG', 'zinc micronutrient, dry granular (verify form)'),
+    ('KickStand DG + Fe Greens Grade', 'WDG', 'iron micronutrient, greens-grade dry granular (verify form)'),
+    # Other named liquid foliar fertilizers (group 5 solutions)
+    ('Coron Metra 25 B', 'SL', '25-0-0 controlled-release nitrogen + boron, foliar (foliar nutritional)'),
+    ('ENC Flex', 'SL', '11-6-5 + chelated micronutrients, ammonia-free foliar solution (foliar nutritional)'),
+    ('K-Leaf Versa', 'SL', '29% K2O + chelated micronutrients, foliar (foliar nutritional)'),
+    ('Metra Full Bor', 'SL', 'controlled-release nitrogen + boron, foliar (foliar nutritional)'),
+    ('Tracite 10 B', 'SL', '10% boron liquid (foliar nutritional)'),
+    ('Trafix Zn', 'SL', 'liquid zinc, Asset technology (foliar nutritional)'),
+    # Iron chelates
+    ('Ferrilene', 'SG', '100% EDDHA-chelated 6% iron, water-soluble microgranules (nutritional)'),
+    ('Ferrigran Black Iron', 'G', 'granular EDDHA+HBED iron + humic, soil-applied (not tank-mixed)'),
+]
+
 
 def main():
     ndsu = json.load(open('products.json', encoding='utf-8'))
@@ -200,6 +268,34 @@ def main():
         out.append(item)
         edak_added += 1
 
+    # --- Manually-added products ---
+    manual_added = 0
+    for name, code, ai, _cls in MANUAL_PRODUCTS:
+        key = name.lower()
+        if key in by_name:
+            continue
+        grp = CODE_GROUP.get(code) if code else None
+        item = {'name': name, 'code': code, 'group': grp,
+                'groupLabel': GROUP_LABEL.get(grp, 'Unknown — check product label'),
+                'ai': ai, 'adjuvant': False, 'source': 'Manual'}
+        by_name[key] = item
+        out.append(item)
+        manual_added += 1
+
+    # --- Helena foliar nutritionals ---
+    nutri_added = 0
+    for name, code, ai in NUTRITIONAL_PRODUCTS:
+        key = name.lower()
+        if key in by_name:
+            continue
+        grp = CODE_GROUP.get(code) if code else None
+        item = {'name': name, 'code': code, 'group': grp,
+                'groupLabel': GROUP_LABEL.get(grp, 'Unknown — check product label'),
+                'ai': ai, 'adjuvant': False, 'source': 'Nutritional'}
+        by_name[key] = item
+        out.append(item)
+        nutri_added += 1
+
     out.sort(key=lambda p: p['name'].lower())
     with open('data.js', 'w', encoding='utf-8') as f:
         f.write('// Auto-generated. Sources: NDSU ND Weed Control Guide W-253 (2026) pp.86,120-128;\n')
@@ -213,6 +309,8 @@ def main():
     print(f'Helena products added: {added}, filled NDSU gaps: {filled}')
     print(f'Adjuvants added (Helena + EDak): {adj}')
     print(f'EDak products added: {edak_added} (review-flagged: {edak_review})')
+    print(f'Manual products added: {manual_added}')
+    print(f'Nutritional products added: {nutri_added}')
     print(f'TOTAL entries in data.js: {len(out)}')
 
 
