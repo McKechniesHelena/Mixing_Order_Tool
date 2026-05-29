@@ -22,14 +22,12 @@ const GROUP_CODES = {
 const ADJUVANTS = [
   { name: 'AMS (ammonium sulfate, spray grade)', code: 'AMS', group: 1, adjuvant: true,
     note: 'Do NOT use AMS with any dicamba formulation — it increases dicamba volatility.' },
-  { name: 'Liquid AMS / water conditioner', code: 'AMS-L', group: 1, adjuvant: true,
-    note: 'Water-conditioning agent; follow the label — many are added to the water first.' },
   { name: 'Crop oil concentrate (COC)', code: 'COC', group: 4, adjuvant: true },
   { name: 'Methylated seed oil (MSO)', code: 'MSO', group: 4, adjuvant: true },
   { name: 'Nonionic surfactant (NIS)', code: 'NIS', group: 5, adjuvant: true },
   { name: 'Drift reduction agent (DRA)', code: 'DRA', group: 5, adjuvant: true,
     note: 'Add last, just before topping off the tank.' },
-  { name: 'Defoaming agent', code: 'AF', group: 5, adjuvant: true,
+  { name: 'Defoaming agent', code: 'Defoamer', group: 5, adjuvant: true,
     note: 'Add last, as needed.' },
 ];
 
@@ -81,7 +79,7 @@ const SCHEMES = {
         if (item.group === 1) return 2;                 // water conditioners / AMS
         if (item.group === 4) return 13;                // oil-based adjuvants last
         if (item.group === 5) {
-          if (/AF/i.test(item.code || '')) return 2;    // foam control
+          if (/Defoam|AF/i.test(item.code || '')) return 2;    // foam control
           if (/DRA/i.test(item.code || '') || /\blast\b/i.test(item.note || '')) return 11;
           return 12;                                    // surfactants (NIS)
         }
@@ -123,7 +121,7 @@ const SCHEMES = {
         if (item.group === 1) return 0;                 // AMS / water conditioners first
         if (item.group === 4) return 6;                 // oils (COC/MSO)
         if (item.group === 5) {
-          return (/DRA|AF/i.test(item.code || '') || /\blast\b/i.test(item.note || '')) ? 8 : 7;
+          return (/DRA|AF|Defoam/i.test(item.code || '') || /\blast\b/i.test(item.note || '')) ? 8 : 7;
         }
         return null;
       }
@@ -523,7 +521,7 @@ function orderedItems() {
 /* plain-text warning strings (shared by the warning box and the copied text) */
 function computeWarnings() {
   const w = [];
-  const hasAMS = selected.some((s) => s.code === 'AMS' || s.code === 'AMS-L' || s.ammonium);
+  const hasAMS = selected.some((s) => s.code === 'AMS' || s.ammonium);
   const dicambaProds = selected.filter((s) => isDicamba(s.ai)).map((s) => s.name);
   if (hasAMS && dicambaProds.length) {
     w.push(`Do not use AMS with dicamba. Ammonium increases dicamba volatility and reduces `
