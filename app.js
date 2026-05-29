@@ -95,7 +95,8 @@ const SCHEMES = {
         default: return null;
       }
     },
-    secondary: () => 0,
+    // within the water-conditioner stage, the defoamer is added last
+    secondary: (item) => (/Defoam|AF/i.test(item.code || '') ? 1 : 0),
     label: (ph) => HELENA_LABELS[ph],
     refTitle: 'Helena (NBU p.95) order',
     refPhases: [2, 4, 5, 6, 7, 8, 11, 12, 13],
