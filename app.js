@@ -68,6 +68,14 @@ const HELENA_LABELS = {
   13: { name: 'Oil-based adjuvants', codes: 'COC, MSO — add last' },
 };
 
+/* Items pinned to the END of their stage (added last within their group),
+   per operator preference. Applied across all schemes:
+   defoamer (water conditioners) · Justified (drift agents) · Roundup PowerMax 3 (soluble liquids). */
+const FORCE_LAST = (item) =>
+  /Defoam|AF/i.test(item.code || '')
+  || /^justified$/i.test(item.name || '')
+  || /^roundup powermax 3$/i.test(item.name || '');
+
 const SCHEMES = {
   helena: {
     title: 'Helena NBU 2026 Product Guide mixing order (p.95)',
@@ -95,14 +103,7 @@ const SCHEMES = {
         default: return null;
       }
     },
-    // within a stage, force certain items to be added last of their group:
-    //   defoamer (water conditioners) · Justified (drift agents) · Roundup PowerMax 3 (soluble liquids)
-    secondary: (item) => {
-      if (/Defoam|AF/i.test(item.code || '')) return 1;
-      if (/^justified$/i.test(item.name || '')) return 1;
-      if (/^roundup powermax 3$/i.test(item.name || '')) return 1;
-      return 0;
-    },
+    secondary: (item) => (FORCE_LAST(item) ? 1 : 0),
     label: (ph) => HELENA_LABELS[ph],
     refTitle: 'Helena (NBU p.95) order',
     refPhases: [2, 4, 5, 6, 7, 8, 11, 12, 13],
@@ -113,7 +114,8 @@ const SCHEMES = {
   apples: {
     title: 'A.P.P.L.E.S. method (ND Weed Control Guide W-253, p.86)',
     phaseOf: (item) => (item.group >= 1 && item.group <= 5 ? item.group : null),
-    secondary: (item) => (item.adjuvant ? 1 : 0),   // pesticide before adjuvant
+    // pesticide before adjuvant; force-last items go after everything in the group
+    secondary: (item) => (FORCE_LAST(item) ? 2 : (item.adjuvant ? 1 : 0)),
     label: (ph) => ({ name: GROUP_NAMES[ph], codes: GROUP_CODES[ph] }),
     refTitle: 'A.P.P.L.E.S. order',
     refPhases: [1, 2, 3, 4, 5],
@@ -140,7 +142,7 @@ const SCHEMES = {
         default: return null;       // granular / unknown
       }
     },
-    secondary: () => 0,
+    secondary: (item) => (FORCE_LAST(item) ? 1 : 0),
     label: (ph) => INDUSTRY_LABELS[ph],
     refTitle: 'Solutions-before-EC order',
     refPhases: [0, 2, 3, 4, 5, 6, 7, 8],
