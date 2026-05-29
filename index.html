@@ -95,6 +95,20 @@
       <div id="output" class="output"></div>
     </section>
 
+    <section class="panel saved-panel">
+      <div class="panel-head">
+        <h2>3 · Saved mixes</h2>
+        <button id="saveMixBtn" class="copy-btn" type="button" disabled>Save current mix…</button>
+      </div>
+      <div id="saveMixForm" class="custom-form" hidden>
+        <input id="saveMixName" type="text" autocomplete="off" placeholder="Name this mix (e.g. Wheat burndown — 5/30)">
+        <button id="saveMixConfirm" class="copy-btn" type="button">Save</button>
+        <button id="saveMixCancel" class="link-btn" type="button">Cancel</button>
+      </div>
+      <ul id="savedMixesList" class="saved-mixes"></ul>
+      <p id="savedMixesEmpty" class="saved-empty">No saved mixes yet. Build a mix above, then click <b>Save current mix</b>.</p>
+    </section>
+
     <section class="panel ref">
       <div class="scheme-row" role="radiogroup" aria-label="Mixing order scheme">
         <span class="scheme-label">Order scheme:</span>

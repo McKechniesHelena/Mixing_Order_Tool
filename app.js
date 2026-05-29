@@ -278,6 +278,7 @@ function render() {
   printBtn.hidden = empty;
   imgBtn.hidden = empty;
   clearBtn.hidden = selected.length === 0;
+  refreshSaveBtnEnabled();
 }
 
 /* ---- Plain-text export ---- */
@@ -432,6 +433,146 @@ clearBtn.addEventListener('click', () => {
   selected.length = 0;
   render();
 });
+
+/* ---- Saved mixes (localStorage) ---- */
+const SAVED_KEY = 'savedMixesV1';
+
+function loadSavedMixes() {
+  try {
+    const raw = localStorage.getItem(SAVED_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  } catch (_) { return []; }
+}
+
+function writeSavedMixes(arr) {
+  try { localStorage.setItem(SAVED_KEY, JSON.stringify(arr)); } catch (_) {}
+}
+
+// Fields we persist per item so a mix can be reloaded even if the live
+// product list changes. Custom products are fully self-contained here.
+const PERSIST_FIELDS = ['name', 'code', 'group', 'groupLabel', 'ai',
+  'adjuvant', 'custom', 'ammonium', 'note', 'source'];
+
+function snapshotItem(it) {
+  const o = {};
+  for (const k of PERSIST_FIELDS) if (it[k] != null) o[k] = it[k];
+  return o;
+}
+
+// Re-link a stored item to the LIVE product (so any data corrections flow
+// through). Falls back to the stored snapshot when no live match exists
+// (custom products, or products that have since been renamed/removed).
+function rehydrateItem(stored) {
+  if (stored.custom) return { ...stored };
+  const live = products.find((p) =>
+    p.name.toLowerCase() === (stored.name || '').toLowerCase()
+    && !!p.adjuvant === !!stored.adjuvant);
+  return live ? { ...live } : { ...stored };
+}
+
+function saveCurrentMix(name) {
+  const mixes = loadSavedMixes();
+  const id = 'm' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  mixes.unshift({
+    id,
+    name: name.trim() || ('Mix ' + new Date().toLocaleDateString()),
+    items: selected.map(snapshotItem),
+    scheme: currentScheme,
+    savedAt: Date.now(),
+  });
+  writeSavedMixes(mixes);
+  renderSavedMixes();
+}
+
+function loadMix(id) {
+  const m = loadSavedMixes().find((x) => x.id === id);
+  if (!m) return;
+  selected.length = 0;
+  m.items.forEach((stored) => {
+    const it = rehydrateItem(stored);
+    if (!selected.some((s) => keyOf(s) === keyOf(it))) selected.push(it);
+  });
+  if (m.scheme && SCHEMES[m.scheme] && m.scheme !== currentScheme) {
+    currentScheme = m.scheme;
+    localStorage.setItem(SCHEME_KEY, currentScheme);
+    const r = document.querySelector(`input[name="scheme"][value="${m.scheme}"]`);
+    if (r) r.checked = true;
+    renderReference();
+  }
+  render();
+  // scroll the order box into view so the load is visible
+  output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function deleteMix(id) {
+  const mixes = loadSavedMixes().filter((x) => x.id !== id);
+  writeSavedMixes(mixes);
+  renderSavedMixes();
+}
+
+const SCHEME_SHORT = { helena: 'Helena', apples: 'A.P.P.L.E.S.', industry: 'Solutions-before-EC' };
+
+function renderSavedMixes() {
+  const list = $('savedMixesList');
+  const empty = $('savedMixesEmpty');
+  const mixes = loadSavedMixes();
+  list.innerHTML = '';
+  empty.hidden = mixes.length > 0;
+  mixes.forEach((m) => {
+    const li = document.createElement('li');
+    li.className = 'saved-mix';
+    const when = new Date(m.savedAt).toLocaleDateString(undefined,
+      { month: 'short', day: 'numeric', year: 'numeric' });
+    const previewNames = m.items.slice(0, 3).map((i) => i.name).join(', ');
+    const more = m.items.length > 3 ? ` +${m.items.length - 3} more` : '';
+    li.innerHTML = `
+      <div class="saved-mix-info">
+        <div class="saved-mix-name"></div>
+        <div class="saved-mix-meta"></div>
+      </div>
+      <div class="saved-mix-actions">
+        <button type="button" class="copy-btn load-btn">Load</button>
+        <button type="button" class="del-btn" title="Delete">×</button>
+      </div>`;
+    li.querySelector('.saved-mix-name').textContent = m.name;
+    li.querySelector('.saved-mix-meta').textContent =
+      `${m.items.length} item${m.items.length === 1 ? '' : 's'} · ${SCHEME_SHORT[m.scheme] || m.scheme} · ${when}`
+      + (previewNames ? `  —  ${previewNames}${more}` : '');
+    li.querySelector('.load-btn').onclick = () => loadMix(m.id);
+    li.querySelector('.del-btn').onclick = () => {
+      if (confirm(`Delete saved mix "${m.name}"?`)) deleteMix(m.id);
+    };
+    list.appendChild(li);
+  });
+}
+
+// Save-form open/close/confirm
+const saveMixBtn = $('saveMixBtn');
+const saveMixForm = $('saveMixForm');
+const saveMixName = $('saveMixName');
+saveMixBtn.addEventListener('click', () => {
+  if (!selected.length) return;
+  saveMixForm.hidden = false;
+  const today = new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  saveMixName.value = `Mix — ${today}`;
+  saveMixName.focus();
+  saveMixName.select();
+});
+$('saveMixCancel').addEventListener('click', () => { saveMixForm.hidden = true; });
+$('saveMixConfirm').addEventListener('click', () => {
+  saveCurrentMix(saveMixName.value);
+  saveMixForm.hidden = true;
+});
+saveMixName.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    saveCurrentMix(saveMixName.value);
+    saveMixForm.hidden = true;
+  } else if (e.key === 'Escape') {
+    saveMixForm.hidden = true;
+  }
+});
+function refreshSaveBtnEnabled() { saveMixBtn.disabled = selected.length === 0; }
 
 /* ---- Custom product ---- */
 function openCustomForm(prefill) {
@@ -635,3 +776,4 @@ function renderOrder() {
 
 render();
 renderReference();
+renderSavedMixes();
