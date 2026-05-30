@@ -551,11 +551,16 @@ function renderSavedMixes() {
 const saveMixBtn = $('saveMixBtn');
 const saveMixForm = $('saveMixForm');
 const saveMixName = $('saveMixName');
+// Build a suggested name from the current selection, in computed mixing order.
+function suggestMixName() {
+  const ordered = orderedItems().map((o) => o.it || o);
+  return ordered.map((it) => it.name).join(' + ');
+}
+
 saveMixBtn.addEventListener('click', () => {
   if (!selected.length) return;
   saveMixForm.hidden = false;
-  const today = new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-  saveMixName.value = `Mix — ${today}`;
+  saveMixName.value = suggestMixName();
   saveMixName.focus();
   saveMixName.select();
 });
