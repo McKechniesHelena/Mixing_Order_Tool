@@ -122,7 +122,8 @@ EDAK_ADJUVANTS = [
     ('Cohere', 5, 'NIS', 'nonionic spreader-sticker surfactant', '', False),
     ('Crop Oil Concentrate', 4, 'COC', 'crop oil concentrate (COC)', '', False),
     ('Kinetic', 5, 'NIS', 'nonionic surfactant + organosilicone penetrant', '', False),
-    ('Liquid Chisel', 4, 'MSO', 'methylated seed oil (MSO)', '', False),
+    # Liquid Chisel: per Helena/operator guidance, treat as a soluble-liquid
+    # solution — see MANUAL_PRODUCTS below. (NOT an MSO.)
     ('Optima', 5, 'NIS', 'nonionic surfactant', '', False),
     ('Premium MSO', 4, 'MSO', 'methylated seed oil (MSO)', '', False),
     ('Re-Duce', 1, 'WC', 'water conditioner / AMS replacement + surfactant',
@@ -143,6 +144,7 @@ MANUAL_PRODUCTS = [
     ('Medal II EC', 'EC', 's-metolachlor', 'herbicide'),
     ('Explorer', 'SC', 'mesotrione', 'herbicide'),
     ('Atrazine 4F', 'F', 'atrazine', 'herbicide'),
+    ('Liquid Chisel', 'SL', 'soluble-liquid adjuvant — mixes with the solutions', 'adjuvant'),
 ]
 
 # --- Helena foliar nutritionals (NBU 2026 guide, Nutritionals section pp.31-42).
