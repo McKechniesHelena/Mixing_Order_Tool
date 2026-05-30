@@ -343,6 +343,14 @@ main {
 
 /* saved mixes */
 .saved-panel .panel-head { align-items: center; }
+.save-row { display: flex; gap: 8px; align-items: center; margin: 8px 0 0; }
+.save-row input {
+  flex: 1 1 auto; min-width: 0;
+  padding: 10px 12px; font-size: 1rem;
+  border: 1.5px solid var(--line); border-radius: 8px; background: #fff;
+}
+.save-row input:focus { outline: none; border-color: var(--green); }
+.save-row .copy-btn { flex-shrink: 0; }
 .saved-mixes { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .saved-mix {
   display: flex; align-items: center; gap: 10px;
@@ -427,4 +435,6 @@ body.capturing .print-title {
   .chip button { width: 28px; height: 28px; }
   .steps .step, .steps .step-water { padding: 14px 12px 14px 48px; }
   .custom-form input, .custom-form select, .custom-form .copy-btn { flex-basis: 100%; width: 100%; }
+  .save-row { flex-wrap: wrap; }
+  .save-row input, .save-row .copy-btn { flex-basis: 100%; }
 }

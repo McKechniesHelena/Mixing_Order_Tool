@@ -547,37 +547,53 @@ function renderSavedMixes() {
   });
 }
 
-// Save-form open/close/confirm
+// Inline save: name input auto-fills from the current selection (in computed
+// mixing order); Save button stores the mix. Once the user manually edits the
+// name we stop auto-overwriting it until they clear the field again.
 const saveMixBtn = $('saveMixBtn');
-const saveMixForm = $('saveMixForm');
 const saveMixName = $('saveMixName');
-// Build a suggested name from the current selection, in computed mixing order.
+
 function suggestMixName() {
-  const ordered = orderedItems().map((o) => o.it || o);
-  return ordered.map((it) => it.name).join(' + ');
+  return orderedItems().map((o) => (o.it || o).name).join(' + ');
 }
 
-saveMixBtn.addEventListener('click', () => {
-  if (!selected.length) return;
-  saveMixForm.hidden = false;
-  saveMixName.value = suggestMixName();
-  saveMixName.focus();
-  saveMixName.select();
-});
-$('saveMixCancel').addEventListener('click', () => { saveMixForm.hidden = true; });
-$('saveMixConfirm').addEventListener('click', () => {
-  saveCurrentMix(saveMixName.value);
-  saveMixForm.hidden = true;
-});
-saveMixName.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    saveCurrentMix(saveMixName.value);
-    saveMixForm.hidden = true;
-  } else if (e.key === 'Escape') {
-    saveMixForm.hidden = true;
+// Tracks the last value WE auto-populated so we know whether the field
+// currently holds an auto-suggestion (safe to overwrite as items change)
+// or the user's own text (leave it alone).
+let lastSuggested = '';
+
+function refreshSaveRow() {
+  const suggested = suggestMixName();
+  // If the field is empty, or still matches our last auto-suggestion,
+  // refresh it to the current selection's suggestion.
+  if (saveMixName.value === '' || saveMixName.value === lastSuggested) {
+    saveMixName.value = suggested;
+    lastSuggested = suggested;
   }
+  saveMixBtn.disabled = selected.length === 0 || saveMixName.value.trim() === '';
+}
+
+function doSaveMix() {
+  if (saveMixBtn.disabled) return;
+  saveCurrentMix(saveMixName.value);
+  // reset to the auto-suggestion of the (still-selected) mix so the row stays
+  // useful — same items still chosen, user can hit Save again with no work
+  saveMixName.value = '';
+  lastSuggested = '';
+  refreshSaveRow();
+}
+
+saveMixBtn.addEventListener('click', doSaveMix);
+saveMixName.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); doSaveMix(); }
 });
-function refreshSaveBtnEnabled() { saveMixBtn.disabled = selected.length === 0; }
+saveMixName.addEventListener('input', () => {
+  // user typed — disable auto-overwrite by clearing our tracker
+  lastSuggested = '__user_edited__';
+  saveMixBtn.disabled = selected.length === 0 || saveMixName.value.trim() === '';
+});
+
+function refreshSaveBtnEnabled() { refreshSaveRow(); }
 
 /* ---- Custom product ---- */
 function openCustomForm(prefill) {
