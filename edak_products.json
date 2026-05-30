@@ -1549,7 +1549,7 @@
  {
   "name": "Sinister Intent",
   "code": "DC",
-  "ai": "fomesafen",
+  "ai": "fomesafen + s-metolachlor",
   "class": "herbicide",
   "review": true
  },

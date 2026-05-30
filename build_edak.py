@@ -145,6 +145,13 @@ def clean_ai(ai):
     ai = re.sub(r'\s{2,}', ' ', ai)
     return ai.strip()
 
+# Hand-authored active-ingredient corrections that override the EDak source
+# (the EDak xlsx ai column sometimes lists only the lead active for premixes).
+# Keyed by exact EDak product name.
+AI_OVERRIDES = {
+    'Sinister Intent': 'fomesafen + s-metolachlor',
+}
+
 # --- manual overrides for products with no name-code and no AI-match ---------
 # Real ag products keyed by exact EDak name -> best-effort formulation code,
 # from product knowledge. All flagged review=True on output so the user gets a
@@ -248,21 +255,29 @@ def main():
     n_name = n_set = n_single = n_over = 0
     for r in new:
         name, ai, cls = r['name'], clean_ai(r['ai']), r['class']
+        if name in AI_OVERRIDES:
+            ai = AI_OVERRIDES[name]
         s = ai_set(r['ai'])
         review = False
         code = code_from_name(name)
+        # Resolution priority: name-embedded code -> hand-authored override ->
+        # exact active-ingredient-set match -> single-active fallback. The
+        # hand-authored override comes BEFORE active-ingredient inference
+        # because a single-active heuristic can wrongly assign a code that's
+        # right for one product but wrong for another (e.g. Atrazine 4F is
+        # flowable F, but Aatrex Nine-0 is a Water Dispersible Granule).
         if code:
             n_name += 1
+        elif name in OVERRIDES:
+            code, review = OVERRIDES[name], True
+            n_over += 1
+            review_list.append((cls, name, code, ai))
         elif s in set2code:                       # exact same-actives generic match
             code = set2code[s]
             n_set += 1
         elif len(s) == 1 and next(iter(s)) in single2code:
             code, review = single2code[next(iter(s))], True
             n_single += 1
-            review_list.append((cls, name, code, ai))
-        elif name in OVERRIDES:
-            code, review = OVERRIDES[name], True
-            n_over += 1
             review_list.append((cls, name, code, ai))
         else:
             unresolved.append(r)
