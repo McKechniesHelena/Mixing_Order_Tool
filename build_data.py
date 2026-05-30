@@ -49,7 +49,7 @@ HELENA_PRODUCTS = [
     ('On Deck Icon', 'SL', '2,4-D acid & dicamba acid'),
     ('Opti-Amine', 'SL', '2,4-D amine'),
     ('Opti-DGA', 'SL', 'dicamba DGA'),
-    ('Outlaw', 'EC', '2,4-D ester & dicamba acid'),
+    ('Outlaw', 'SL', '2,4-D & dicamba (liquid concentrate)'),
     ('Parlay', 'EC', 'bromoxynil ester & MCPA ester & fluroxypyr ester'),
     ('Provonis', 'SC', 'cloransulam-methyl'),
     ('Sinister', 'DC', 'fomesafen acid'),
@@ -205,6 +205,9 @@ NUTRITIONAL_PRODUCTS = [
     # Iron chelates
     ('Ferrilene', 'SG', '100% EDDHA-chelated 6% iron, water-soluble microgranules (nutritional)'),
     ('Ferrigran Black Iron', 'G', 'granular EDDHA+HBED iron + humic, soil-applied (not tank-mixed)'),
+    # BioScience foliar biostimulants / nutritionals (NBU pp.23, 26)
+    ('Megafol', 'SL', '3-0-8 foliar biostimulant with plant extracts (BioScience)'),
+    ('Orbix', 'SL', '8-5-3 NPK + micronutrients ammonia-free foliar solution with plant extracts (BioScience)'),
 ]
 
 
