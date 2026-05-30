@@ -145,6 +145,7 @@ MANUAL_PRODUCTS = [
     ('Explorer', 'SC', 'mesotrione', 'herbicide'),
     ('Atrazine 4F', 'F', 'atrazine', 'herbicide'),
     ('Liquid Chisel', 'SL', 'soluble-liquid adjuvant — mixes with the solutions', 'adjuvant'),
+    ('Quilt', 'SE', 'azoxystrobin + propiconazole (fungicide)', 'fungicide'),
 ]
 
 # --- Helena foliar nutritionals (NBU 2026 guide, Nutritionals section pp.31-42).
