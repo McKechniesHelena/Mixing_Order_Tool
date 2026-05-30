@@ -32,6 +32,8 @@ header {
 }
 header h1 { margin: 0 0 4px; font-size: 1.5rem; }
 header .sub { margin: 0; font-size: .9rem; color: #cfe3d3; max-width: 70ch; }
+header .title-row { display: flex; align-items: center; gap: 14px; max-width: 880px; margin: 0 auto; }
+header .title-icon { flex-shrink: 0; background: #fff; border-radius: 10px; padding: 4px; }
 
 main {
   max-width: 880px;

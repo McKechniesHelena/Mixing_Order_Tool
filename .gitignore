@@ -22,6 +22,9 @@ edak_xlsx.json
 edak_review.txt
 edak_review.csv
 
+# Icon experimentation (chosen icon lives at /icon.svg in the project root)
+icons/
+
 # OS / editor cruft
 Thumbs.db
 .DS_Store
